@@ -1,0 +1,2020 @@
+2026-08-13 08:39:36.213 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (228ms)
+============================================
+2026-08-13 08:39:38.459 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /oauth2/authorization/kakao
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 302  (8ms)
+============================================
+2026-08-13 08:39:38.720 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /login/oauth2/code/kakao?code=l7NxgayYhQ-CCxtA857kYd6xiBAKv_y5eIHb0Gjlpoy45rQh2TEMZgAAAAQKFxZiAAABn_hYkxJUdd9ffL_GXA&state=9kg0kqJeDPHlKHkpnyE-X8KxySey0VwQ1hqaO7i6emI%3D
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] code=l7NxgayYhQ-CCxtA857kYd6xiBAKv_y5eIHb0Gjlpoy45rQh2TEMZgAAAAQKFxZiAAABn_hYkxJUdd9ffL_GXA, state=9kg0kqJeDPHlKHkpnyE-X8KxySey0VwQ1hqaO7i6emI=
+[RESP ] 302  (186ms)
+============================================
+2026-08-13 08:39:47.166 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (13ms)
+============================================
+2026-08-13 08:39:47.519 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/stats
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (345ms)
+============================================
+2026-08-13 08:39:53.583 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2ms)
+============================================
+2026-08-13 08:39:53.591 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (6ms)
+============================================
+2026-08-13 08:39:53.641 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (45ms)
+============================================
+2026-08-13 08:39:53.663 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (22ms)
+============================================
+2026-08-13 08:41:02.632 INFO  [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-08-13 08:41:02.689 INFO  [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-08-13 08:41:02.698 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-13 08:41:02.709 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-13 08:41:20.077 INFO  [main] com.lucky.LuckyApplication - Starting LuckyApplication using Java 17.0.18 with PID 26636 (C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main started by zxsa9 in C:\Users\zxsa9\Desktop\tiger_lucky)
+2026-08-13 08:41:20.079 INFO  [main] com.lucky.LuckyApplication - The following 1 profile is active: "local"
+2026-08-13 08:41:20.196 INFO  [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-08-13 08:41:21.662 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-13 08:41:21.677 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-08-13 08:41:21.679 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-13 08:41:21.679 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-13 08:41:21.732 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1619 ms
+2026-08-13 08:41:21.829 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-13 08:41:23.628 WARN  [main] o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customOAuth2UserService' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\auth\service\CustomOAuth2UserService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'memberService' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\service\MemberService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'memberMapper' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\mapper\MemberMapper.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
+2026-08-13 08:41:23.630 INFO  [main] o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2026-08-13 08:41:23.639 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-13 08:41:23.652 ERROR [main] o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customOAuth2UserService' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\auth\service\CustomOAuth2UserService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'memberService' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\service\MemberService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'memberMapper' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\mapper\MemberMapper.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1225)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1121)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:994)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.lucky.LuckyApplication.main(LuckyApplication.java:10)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'memberService' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\service\MemberService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'memberMapper' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\mapper\MemberMapper.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1711)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 21 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'memberMapper' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\mapper\MemberMapper.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1710)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1459)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1711)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 35 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/jdbc/autoconfigure/DataSourceInitializationAutoConfiguration.class]: Failed to execute database script
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
+	... 49 common frames omitted
+Caused by: org.springframework.jdbc.datasource.init.UncategorizedScriptException: Failed to execute database script
+	at org.springframework.jdbc.datasource.init.DatabasePopulatorUtils.execute(DatabasePopulatorUtils.java:67)
+	at org.springframework.boot.jdbc.init.DataSourceScriptDatabaseInitializer.runScripts(DataSourceScriptDatabaseInitializer.java:87)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.runScripts(AbstractScriptDatabaseInitializer.java:159)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyScripts(AbstractScriptDatabaseInitializer.java:120)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applySchemaScripts(AbstractScriptDatabaseInitializer.java:109)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.initializeDatabase(AbstractScriptDatabaseInitializer.java:87)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.afterPropertiesSet(AbstractScriptDatabaseInitializer.java:77)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811)
+	... 58 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84)
+	at org.springframework.jdbc.datasource.init.DatabasePopulatorUtils.execute(DatabasePopulatorUtils.java:52)
+	... 66 common frames omitted
+Caused by: org.postgresql.util.PSQLException: FATAL: (ENOTFOUND) tenant/user postgres.hgwagctoirgaiimhfuor not found
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:835)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:307)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:365)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:52)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:290)
+	at org.postgresql.Driver.makeConnection(Driver.java:448)
+	at org.postgresql.Driver.connect(Driver.java:298)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:373)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:210)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81)
+	... 67 common frames omitted
+2026-08-13 08:42:56.479 INFO  [main] com.lucky.LuckyApplication - Starting LuckyApplication using Java 17.0.18 with PID 29280 (C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main started by zxsa9 in C:\Users\zxsa9\Desktop\tiger_lucky)
+2026-08-13 08:42:56.483 INFO  [main] com.lucky.LuckyApplication - The following 1 profile is active: "local"
+2026-08-13 08:42:56.689 INFO  [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-08-13 08:42:57.712 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-13 08:42:57.722 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-08-13 08:42:57.723 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-13 08:42:57.724 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-13 08:42:57.773 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1225 ms
+2026-08-13 08:42:57.868 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-13 08:42:59.543 WARN  [main] o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customOAuth2UserService' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\auth\service\CustomOAuth2UserService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'memberService' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\service\MemberService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'memberMapper' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\mapper\MemberMapper.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
+2026-08-13 08:42:59.545 INFO  [main] o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2026-08-13 08:42:59.553 INFO  [main] o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-13 08:42:59.566 ERROR [main] o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customOAuth2UserService' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\auth\service\CustomOAuth2UserService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'memberService' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\service\MemberService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'memberMapper' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\mapper\MemberMapper.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1225)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1121)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:994)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.lucky.LuckyApplication.main(LuckyApplication.java:10)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'memberService' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\service\MemberService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'memberMapper' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\mapper\MemberMapper.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1711)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 21 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'memberMapper' defined in file [C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main\com\lucky\member\mapper\MemberMapper.class]: Cannot resolve reference to bean 'sqlSessionTemplate' while setting bean property 'sqlSessionTemplate'
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1710)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1459)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1711)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 35 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/jdbc/autoconfigure/DataSourceInitializationAutoConfiguration.class]: Failed to execute database script
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
+	... 49 common frames omitted
+Caused by: org.springframework.jdbc.datasource.init.UncategorizedScriptException: Failed to execute database script
+	at org.springframework.jdbc.datasource.init.DatabasePopulatorUtils.execute(DatabasePopulatorUtils.java:67)
+	at org.springframework.boot.jdbc.init.DataSourceScriptDatabaseInitializer.runScripts(DataSourceScriptDatabaseInitializer.java:87)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.runScripts(AbstractScriptDatabaseInitializer.java:159)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyScripts(AbstractScriptDatabaseInitializer.java:120)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applySchemaScripts(AbstractScriptDatabaseInitializer.java:109)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.initializeDatabase(AbstractScriptDatabaseInitializer.java:87)
+	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.afterPropertiesSet(AbstractScriptDatabaseInitializer.java:77)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811)
+	... 58 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84)
+	at org.springframework.jdbc.datasource.init.DatabasePopulatorUtils.execute(DatabasePopulatorUtils.java:52)
+	... 66 common frames omitted
+Caused by: org.postgresql.util.PSQLException: FATAL: (ENOTFOUND) tenant/user postgres.hgwagctoirgaiimhfuor not found
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:835)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:307)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:365)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:52)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:290)
+	at org.postgresql.Driver.makeConnection(Driver.java:448)
+	at org.postgresql.Driver.connect(Driver.java:298)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:373)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:210)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81)
+	... 67 common frames omitted
+2026-08-13 08:47:48.584 INFO  [main] com.lucky.LuckyApplication - Starting LuckyApplication using Java 17.0.18 with PID 20800 (C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main started by zxsa9 in C:\Users\zxsa9\Desktop\tiger_lucky)
+2026-08-13 08:47:48.587 INFO  [main] com.lucky.LuckyApplication - The following 1 profile is active: "local"
+2026-08-13 08:47:48.709 INFO  [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-08-13 08:47:49.606 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-13 08:47:49.616 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-08-13 08:47:49.618 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-13 08:47:49.618 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-13 08:47:49.663 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1037 ms
+2026-08-13 08:47:49.760 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-13 08:47:51.255 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@25533bba
+2026-08-13 08:47:51.256 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-13 08:47:54.474 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-08-13 08:47:54.483 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-08-13 08:47:54.487 INFO  [main] com.lucky.LuckyApplication - Started LuckyApplication in 6.432 seconds (process running for 6.921)
+2026-08-13 08:48:00.518 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-13 08:48:00.519 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-08-13 08:48:00.520 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-08-13 08:48:00.594 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (68ms)
+============================================
+2026-08-13 08:48:03.131 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /oauth2/authorization/kakao
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 302  (33ms)
+============================================
+2026-08-13 08:48:04.330 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /login/oauth2/code/kakao?code=EDIXZqWQxmz5o5OJtkGLMv3ywboa6qbch_NdbHmkuM6UrIW6oauIkQAAAAQKFwvXAAABn_hgR6wFVMIyByjmyg&state=L6VyaeO9eEBxmvsfXRibaA9jRbm35yX-4i6cCXFSfXw%3D
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] code=EDIXZqWQxmz5o5OJtkGLMv3ywboa6qbch_NdbHmkuM6UrIW6oauIkQAAAAQKFwvXAAABn_hgR6wFVMIyByjmyg, state=L6VyaeO9eEBxmvsfXRibaA9jRbm35yX-4i6cCXFSfXw=
+[RESP ] 302  (823ms)
+============================================
+2026-08-13 08:48:08.347 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (6ms)
+============================================
+2026-08-13 08:48:29.470 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 08:48:29.474 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2ms)
+============================================
+2026-08-13 08:48:30.399 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 08:48:30.402 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2ms)
+============================================
+2026-08-13 08:49:23.835 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (3ms)
+============================================
+2026-08-13 08:49:45.236 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (4ms)
+============================================
+2026-08-13 08:49:45.869 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (3ms)
+============================================
+2026-08-13 08:50:11.703 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (3ms)
+============================================
+2026-08-13 08:50:12.380 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (3ms)
+============================================
+2026-08-13 08:50:12.557 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (6ms)
+============================================
+2026-08-13 08:50:12.908 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (3ms)
+============================================
+2026-08-13 08:50:13.097 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 08:50:17.547 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2ms)
+============================================
+2026-08-13 08:51:43.956 INFO  [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-08-13 08:51:44.004 INFO  [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-08-13 08:51:44.008 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-13 08:51:44.285 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-08-13 08:51:47.841 INFO  [main] com.lucky.LuckyApplication - Starting LuckyApplication using Java 17.0.18 with PID 10180 (C:\Users\zxsa9\Desktop\tiger_lucky\build\classes\java\main started by zxsa9 in C:\Users\zxsa9\Desktop\tiger_lucky)
+2026-08-13 08:51:47.843 INFO  [main] com.lucky.LuckyApplication - The following 1 profile is active: "local"
+2026-08-13 08:51:47.962 INFO  [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-08-13 08:51:48.791 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-08-13 08:51:48.802 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-08-13 08:51:48.803 INFO  [main] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-08-13 08:51:48.803 INFO  [main] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-08-13 08:51:48.850 INFO  [main] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 974 ms
+2026-08-13 08:51:48.943 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-08-13 08:51:50.462 INFO  [main] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3a2546d6
+2026-08-13 08:51:50.463 INFO  [main] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-08-13 08:51:53.659 INFO  [main] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-08-13 08:51:53.667 INFO  [main] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-08-13 08:51:53.673 INFO  [main] com.lucky.LuckyApplication - Started LuckyApplication in 6.335 seconds (process running for 6.86)
+2026-08-13 08:52:01.300 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-13 08:52:01.300 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-08-13 08:52:01.302 INFO  [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-08-13 08:52:01.500 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (183ms)
+============================================
+2026-08-13 08:52:04.172 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /oauth2/authorization/kakao
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 302  (41ms)
+============================================
+2026-08-13 08:52:06.194 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /login/oauth2/code/kakao?code=9v60B_mYaLIclP04McrQlQyENyViJ51sv355EdXMyKwhdetXuG6t4wAAAAQKFzXdAAABn_hj-RGIenTzhLqDRQ&state=LTaQGSlOQERv4cgF8csKeCq9YhpbdQwq8ni-To0KKL8%3D
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] code=9v60B_mYaLIclP04McrQlQyENyViJ51sv355EdXMyKwhdetXuG6t4wAAAAQKFzXdAAABn_hj-RGIenTzhLqDRQ, state=LTaQGSlOQERv4cgF8csKeCq9YhpbdQwq8ni-To0KKL8=
+[RESP ] 302  (672ms)
+============================================
+2026-08-13 08:52:11.411 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (8ms)
+============================================
+2026-08-13 08:52:14.093 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/stats
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2670ms)
+============================================
+2026-08-13 08:52:20.529 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2ms)
+============================================
+2026-08-13 08:52:20.530 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2ms)
+============================================
+2026-08-13 08:52:20.957 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (413ms)
+============================================
+2026-08-13 08:52:20.968 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (433ms)
+============================================
+2026-08-13 13:22:12.554 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (3ms)
+============================================
+2026-08-13 13:22:15.313 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /oauth2/authorization/kakao
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 302  (1ms)
+============================================
+2026-08-13 13:22:17.003 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /login/oauth2/code/kakao?code=gVkMthzGGxpp72gVDBeTVIUHvTHWl5XgVAC0OSTmvd5-5oqThTux2wAAAAQKDR-XAAABn_lbVn0h5oEAb4_jFQ&state=0mb3AaJ6Co0MHAdF7wt5KxSWmZPDCpP9oT3OnKokoPc%3D
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] code=gVkMthzGGxpp72gVDBeTVIUHvTHWl5XgVAC0OSTmvd5-5oqThTux2wAAAAQKDR-XAAABn_lbVn0h5oEAb4_jFQ, state=0mb3AaJ6Co0MHAdF7wt5KxSWmZPDCpP9oT3OnKokoPc=
+[RESP ] 302  (604ms)
+============================================
+2026-08-13 13:22:22.244 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (8ms)
+============================================
+2026-08-13 13:22:23.809 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 13:22:23.812 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2ms)
+============================================
+2026-08-13 13:22:24.274 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (457ms)
+============================================
+2026-08-13 13:22:24.551 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (725ms)
+============================================
+2026-08-13 13:22:24.899 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/stats
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2609ms)
+============================================
+2026-08-13 13:23:10.451 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 13:23:11.117 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money","title":"재물운123","description":"재물입니다","durationText":"약 1분","price":1000,"active":true,"category":"기타","teaserPrompt":"","fullPrompt":"너는 재물의 흐름을 사주로 짚어 주는 노련하고 실용적인 상담가다.\n뜬구름 잡는 덕담이 아니라, 의뢰인의 사주 근거로 \"언제·무엇을·어떤 순서로\"를 담백한 존댓말로 말한다.\n\n원칙:\n- 문체는 단정한 존댓말(\"~합니다\"). 과장·공포 조장 금지, 나쁜 구간도 반드시 대비책과 함께.\n- 투자 종목·특정 금융상품 추천 금지. 방식·성향·시기 수준까지만.\n- 수익 보장·확정 표현 금지(\"반드시 벌게 됩니다\" 금지 → \"흐름이 열립니다\").\n- 빚·보증·도박 관련은 보호적 관점으로 서술.\n- 모든 본문은 의뢰인 사주(오행·재성·대운·세운)에 근거한 개별 해석. 일반론 복붙 금지.\n- 출력은 아래 JSON 하나만. 마크다운·설명·코드펜스 금지.\n\n[의뢰인 정보]\n이름 {{name}} · 성별 {{gender}} · 생년월일 {{birthDate}} ({{calendar}}, 윤달 {{leapMonth}}) · 태어난 시 {{birthTime}}\n[사주 근거] {{sajuFacts}}\n[상황] 현재 상황: {{situation}} / 관심 주제: {{topics}} / 고민 한 줄: {{question}}\n\n반드시 아래 JSON 형식으로만 출력:\n{\n  \"chapters\": [\n    { \"t\": \"타고난 재물의 그릇\", \"d\": \"사주 전체에서 재물이 놓인 자리\", \"body\": \"2문단(문단 구분은 \\n, 각 문단 2~3문장)\", \"tip\": \"한 줄 실행 팁(이 장은 필수)\" },\n    { \"t\": \"돈이 들어오는 방식\", \"d\": \"차곡차곡 모으는 형인지, 크게 벌고 크게 쓰는 형인지\", \"body\": \"...\" },\n    { \"t\": \"재물이 모이는 시기\", \"d\": \"흐름이 열리는 해와 달\", \"body\": \"...\" },\n    { \"t\": \"재물이 새는 시기\", \"d\": \"지출이 커지기 쉬운 구간\", \"body\": \"...\" },\n    { \"t\": \"올해의 �
+[RESP ] 200  (664ms)
+============================================
+2026-08-13 13:23:11.398 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (278ms)
+============================================
+2026-08-13 13:25:30.786 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (282ms)
+============================================
+2026-08-13 13:28:14.947 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (279ms)
+============================================
+2026-08-13 13:28:32.880 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 13:28:33.586 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money-fortune"}
+[RESP ] 404  (704ms)
+============================================
+2026-08-13 13:28:40.423 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 13:28:41.117 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money-fortune"}
+[RESP ] 404  (692ms)
+============================================
+2026-08-13 13:29:09.518 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 13:29:10.208 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money-fortune"}
+[RESP ] 404  (688ms)
+============================================
+2026-08-13 13:29:43.983 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 13:29:44.676 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money-fortune"}
+[RESP ] 404  (691ms)
+============================================
+2026-08-13 13:29:56.806 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (292ms)
+============================================
+2026-08-13 13:35:53.071 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 13:35:53.780 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money-fortune"}
+[RESP ] 404  (707ms)
+============================================
+2026-08-13 13:36:00.063 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 13:36:00.762 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money-fortune"}
+[RESP ] 404  (697ms)
+============================================
+2026-08-13 13:36:29.137 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (283ms)
+============================================
+2026-08-13 13:36:29.158 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 13:36:29.173 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 403  (6ms)
+============================================
+2026-08-13 13:38:33.223 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 13:38:34.086 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money"}
+[RESP ] 200  (861ms)
+============================================
+2026-08-13 13:57:17.386 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 13:57:18.315 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money"}
+[RESP ] 200  (926ms)
+============================================
+2026-08-13 13:57:31.867 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/complete
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 13:57:32.833 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/complete
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"paymentId":"saju_d84348f4a7694090a3107a9ff1c0ce0b"}
+[RESP ] 200  (962ms)
+============================================
+2026-08-13 13:57:32.837 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/fortunes/money/full
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 13:57:32.853 WARN  [http-nio-8080-exec-10] o.h.v.i.m.a.CascadingMetaDataBuilder - HV000271: Using `@Valid` on a container (java.util.List) is deprecated. You should apply the annotation on the type argument(s). Affected element: GenerateRequest#subjects()
+2026-08-13 13:57:32.857 WARN  [http-nio-8080-exec-10] o.h.v.i.m.a.CascadingMetaDataBuilder - HV000271: Using `@Valid` on a container (java.util.List) is deprecated. You should apply the annotation on the type argument(s). Affected element: subjects
+2026-08-13 13:57:32.857 WARN  [http-nio-8080-exec-10] o.h.v.i.m.a.CascadingMetaDataBuilder - HV000271: Using `@Valid` on a container (java.util.List) is deprecated. You should apply the annotation on the type argument(s). Affected element: GenerateRequest#com.lucky.fortune.dto.GenerateRequest(List, Map)
+2026-08-13 13:57:33.878 INFO  [fortune-gen-1] c.l.f.s.FortuneGenerationWorker - 풀 리포트 생성 시작 id=1
+2026-08-13 13:57:33.879 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/fortunes/money/full
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"paymentId":"saju_d84348f4a7694090a3107a9ff1c0ce0b","intro":"","input":{"subjects":[{"label":"me","name":"테스트","birthDate":"1998-01-14","calendar":"양력","leapMonth":false,"birthTime":"자시(23:30~01:29)","timeUnknown":false}],"answers":{"name":"테스트","gender":"female","cal":"solar","leap":false,"y":"1998","m":"1","d":"14","hour":"ja","situation":"직장인","topics":"돈이 들어오는 시기, 투자·재테크, 부동산","question":"dd"}}}
+[RESP ] 202  (1040ms)
+============================================
+2026-08-13 13:57:34.637 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/1
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (416ms)
+============================================
+2026-08-13 13:57:34.827 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/1
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (563ms)
+============================================
+2026-08-13 13:57:38.379 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/1
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (545ms)
+============================================
+2026-08-13 13:57:41.931 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/1
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (543ms)
+============================================
+2026-08-13 13:57:45.481 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/1
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (544ms)
+============================================
+2026-08-13 13:57:49.032 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/1
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (545ms)
+============================================
+2026-08-13 13:57:52.590 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/1
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (550ms)
+============================================
+2026-08-13 13:57:53.726 INFO  [fortune-gen-1] c.l.f.s.FortuneGenerationService - {
+  "chapters": [
+    {
+      "t": "타고난 재물의 그릇",
+      "d": "사주 전체에서 재물이 놓인 자리",
+      "body": "신유 일주는 금 기운이 중심이라 돈을 대하는 태도가 매우 현실적입니다. 원래 감각은 허투루 쓰기보다 지키고 정리하는 쪽에 가깝고, 작은 손익보다 구조를 먼저 봅니다.\n\n다만 오행 분포상 화·토·목이 거의 비어 있고 금·수가 약하게만 살아 있어, 재물이 저절로 커지는 형은 아닙니다. 대신 기준을 세워 관리하면 새는 돈을 줄이고, 정해진 통로로 차곡차곡 쌓는 힘이 살아납니다."
+      ,
+      "tip": "돈은 감으로 움직이지 말고 숫자와 규칙으로 관리하십시오."
+    },
+    {
+      "t": "돈이 들어오는 방식",
+      "d": "차곡차곡 모으는 형인지, 크게 벌고 크게 쓰는 형인지",
+      "body": "이 사주는 한 번에 크게 벌어 크게 쓰는 흐름보다, 안정적인 급여·정기수입·반복 업무에서 돈이 들어오는 형에 가깝습니다. 특히 금 기운이 강한 성향은 계산이 분명해서, 수입보다 지출 통제가 먼저 맞아야 재물운이 살아납니다.\n\n수입을 늘리는 방식도 모험보다 전문성, 자격, 규정, 관리 능력처럼 눈에 보이는 실력과 연결될 때 유리합니다. 반대로 흐름을 읽기 어려운 방식이나 즉흥적 확장은 돈을 빠르게 소모시키기 쉽습니다."
+      ,
+      "tip": "수입원은 1~2개를 깊게 만들고, 지출은 자동 분리하십시오."
+    },
+    {
+      "t": "재물이 모이는 시기",
+      "d": "흐름이 열리는 해와 달",
+      "body": "재물은 화와 토가 살아나는 때에 열리는데, 이 사주는 기본이 차가운 편이라 봄보다는 늦봄~여름, 그리고 가을의 정리 운이 중요합니다. 특히 25세 전후부터는 돈의 구조를 다시 짜기 좋은 시기로, 27~30세 사이에 수입 체계를 다듬을수록 이후가 편해집니다.\n\n올해와 내년처럼 일·역할이 바뀌는 해에는 한 번에 큰돈보다 지출 구조를 정리하며 재물의 틀을 만드는 편이 낫습니다. 월로 보면 4~6월, 9~10월에 흐름이 열리기 쉽고, 계약·성과·성과급처럼 결과가 보이는 방식이 맞습니다."
+      ,
+      "tip": "돈이 열리는 달에는 벌기보다 먼저 정산과 저축 구조를 고정하십시오."
+    },
+    {
+      "t": "재물이 새는 시기",
+      "d": "지출이 커지기 쉬운 구간",
+      "body": "이 사주는 기운이 비어 있을 때 충동지출보다 ‘필요한 줄 알고 쓰는 지출’이 커지기 쉽습니다. 특히 겨울철, 그리고 마음이 급해지는 시기에는 생활비·이동비·관계비가 늘어나기 쉽습니다.\n\n또한 1~2월과 7~8월에는 판단이 빠르지만 정밀함이 떨어질 수 있어, 구독·소액결제·즉흥 구매가 쌓이기 쉽습니다. 이 구간에는 새는 돈을 막는 것이 곧 수익을 지키는 일입니다."
+      ,
+      "tip": "큰 결제는 24시간 보류하고, 작은 결제는 한도부터 낮추십시오."
+    },
+    {
+      "t": "올해의 월별 금전 흐름",
+      "d": "열두 달을 나눠서",
+      "body": "올해는 월별로 흐름의 강약이 분명합니다. 아래 달력은 벌기보다 지키기, 움직이기보다 정리하기의 기준으로 보시면 됩니다.\n\n월마다 성급한 확장보다, 수입·지출·저축·투자 원칙을 맞추는 달인지 먼저 확인하십시오."
+      ,
+      "months": [
+        { "m": "1월", "s": "warn", "note": "지출 점검 우선" },
+        { "m": "2월", "s": "ok", "note": "소득 정리 유리" },
+        { "m": "3월", "s": "ok", "note": "준비운이 강함" },
+        { "m": "4월", "s": "good", "note": "성과가 보임" },
+        { "m": "5월", "s": "good", "note": "수입운 상승" },
+        { "m": "6월", "s": "ok", "note": "유지에 적합" },
+        { "m": "7월", "s": "warn", "note": "충동지출 주의" },
+        { "m": "8월", "s": "warn", "note": "판단 서두름" },
+        { "m": "9월", "s": "good", "note": "정산에 유리" },
+        { "m": "10월", "s": "good", "note": "목돈 흐름 양호" },
+        { "m": "11월", "s": "warn", "note": "유동성 보수적" },
+        { "m": "12월", "s": "ok", "note": "마무리 정리" }
+      ]
+    },
+    {
+      "t": "앞으로 3년의 큰 흐름",
+      "d": "대운으로 보는 중기 방향",
+      "body": "앞으로 3년은 재물 자체를 키우는 시기라기보다, 돈이 머무는 그릇을 키우는 시기입니다. 직장인이라면 역할 확장, 책임 증가, 평가 기준 정비가 먼저 들어오고 그 뒤에 수입이 따라오는 구조가 맞습니다.\n\n첫 1년은 지출 통제와 현금흐름 안정, 2년 차는 보조수입이나 성과 연계, 3년 차는 자산 배분과 고정비 재설계가 유리합니다. 무리한 확장보다 ‘내가 감당 가능한 규모’를 정확히 정하는 것이 장기적으로 이득입니다."
+    },
+    {
+      "t": "월급이 맞을까, 사업이 맞을까",
+      "d": "수입 형태별 상성",
+      "body": "이 사주는 월급형, 즉 규칙과 구조가 있는 수입이 더 잘 맞습니다. 금 기운이 중심이라 기준이 분명한 조직 안에서 실력을 쌓을 때 돈이 새지 않고, 수입의 예측 가능성이 높아집니다.\n\n사업이 전혀 안 맞는 것은 아니지만, 혼자 즉시 뛰어드는 형태보다 작은 부업·프로젝트·검증된 파트너십처럼 단계적으로 가야 합니다. 먼저 본업에서 현금흐름을 안정시키고, 그 다음에 확장하는 순서가 맞습니다."
+      ,
+      "tip": "본업 수입을 먼저 안정시키고, 부업은 시험 운영부터 시작하십시오."
+    },
+    {
+      "t": "투자 성향과 맞는 분야",
+      "d": "타고난 기질에 맞는 방식",
+      "body": "이 사주는 공격적 추격형보다 원칙형, 분산형, 장기형이 맞습니다. 빠른 판단은 가능하지만, 기운이 단단한 대신 유연성이 약해 한 번의 실수에 오래 묶일 수 있으므로 기준이 있는 방식이 유리합니다.\n\n재테크는 공부 후 실행, 소액 테스트 후 확대, 정기 점검 후 유지의 순서가 좋습니다. 숫자가 명확하고 관리가 가능한 방식, 예산·현금흐름·분할 관리처럼 손에 잡히는 구조가 잘 맞습니다."
+    },
+    {
+      "t": "조심해야 할 투자",
+      "d": "손실이 나기 쉬운 유형",
+      "body": "단기 시세 추종, 레버리지 과다, 주변 추천만 믿는 방식은 특히 주의해야 합니다. 이 사주는 판단이 일단 서면 밀어붙이기 쉬운데, 그때 손실이 나면 회복보다 버티기에 돈이 묶일 수 있습니다.\n\n부동산이든 금융이든 ‘빨리 오를 것’만 보고 들어가는 방식은 맞지 않습니다. 이해하지 못한 상품, 원금 회수가 늦어지는 구조, 빚을 끼운 확장은 피하셔야 합니다."
+      ,
+      "tip": "이해되지 않는 것은 사지 말고, 빚이 섞이면 더 늦추십시오."
+    },
+    {
+      "t": "부동산과의 인연",
+      "d": "자리와 시기",
+      "body": "부동산은 아예 인연이 없는 편은 아니지만, 지금 기질상 빠른 매매 차익보다 실거주 안정, 장기 보유, 생활기반과 연결된 형태가 맞습니다. 토 기운이 약하므로 ‘자리 잡기’가 먼저고, 투기성 접근은 돈이 묶이기 쉽습니다.\n\n시기로는 27~31세 전후에 기초 자산을 검토하기 좋고, 실제 움직임은 수입 안정과 함께 봐야 합니다. 급하게 들어가기보다 계약 구조, 유지비, 세금, 대출 부담을 먼저 계산할수록 유리합니다."
+    },
+    {
+      "t": "목돈이 들어올 시점",
+      "d": "큰돈이 움직이는 구간",
+      "body": "목돈은 성과가 누적된 뒤 한 번에 들어오는 형태가 맞습니다. 특히 4~6월과 9~10월에 평가, 보너스, 정산, 환급 같은 이름으로 돈의 덩어리가 커질 가능성이 있습니다.\n\n다만 이 돈은 ‘들어오는 시점’보다 ‘남기는 방식’이 더 중요합니다. 들어왔을 때 바로 쓰지 말고, 3등분해서 생활비·비상금·중기자산으로 나누는 습관이 필요합니다."
+    },
+    {
+      "t": "빚과 보증을 조심할 시기",
+      "d": "금전 관계에서 주의할 때",
+      "body": "빚과 보증은 이 사주에서 특히 신중해야 합니다. 금 기운이 강한 사람은 책임을 가볍게 보지 않지만, 한 번 약속하면 끝까지 떠안는 성향이 있어 금전적 부담이 커지기 쉽습니다.\n\n1~2월, 7~8월, 그리고 관계가 급해지는 시기에는 보증·공동명의·선대출을 피하는 편이 좋습니다. 꼭 필요하다면 서류와 상환 계획을 먼저 점검하고, 감정이 아닌 숫자로 판단하십시오."
+    },
+    {
+      "t": "금전 거래가 맞는 사람",
+      "d": "동업과 돈거래의 상성",
+      "body": "이 사주는 돈거래를 아무나와 하면 안 되고, 기준이 분명하고 약속을 문서로 지키는 사람과 맞습니다. 말이 많은 사람보다 일정, 정산, 증빙을 깔끔히 하는 사람이 더 좋습니다.\n\n동업도 감정형보다 역할 분담형이 맞고, 각자 책임 범위가 선명해야 합니다. 친한 사람일수록 돈은 더 보수적으로 다뤄야 하며, 소액 테스트 후 확장하는 순서가 안전합니다."
+    },
+    {
+      "t": "재물운을 돕는 생활 습관",
+      "d": "방향·색·시간 활용",
+      "body": "재물운을 돕는 생활 습관은 ‘정돈’입니다. 금 기운이 중심이므로 책상, 지갑, 계좌, 명세서를 깨끗하게 관리할수록 돈의 흐름이 안정됩니다.\n\n방향으로는 서쪽·북서쪽의 정리와 활용이 무난하고, 색은 흰색·회색 계열처럼 과하지 않은 톤이 잘 맞습니다. 시간대는 오전의 정리, 월말의 결산, 분기별 점검이 특히 중요합니다."
+    },
+    {
+      "t": "종합 정리와 실행 제안",
+      "d": "지금 무엇부터 하면 좋은지",
+      "body": "질문하신 핵심에 답드리면, 지금은 무리한 투자 확장보다 돈이 새지 않게 구조를 만드는 것이 우선입니다. 직장인으로서는 본업에서의 평가와 정산이 먼저 열리고, 그 다음에 재테크와 부동산을 단계적으로 붙이는 순서가 맞습니다.\n\n앞으로의 흐름은 4~6월, 9~10월에 가장 반응이 좋고, 1~2월과 7~8월은 보수적으로 가야 합니다. 투자·재테크는 소액 분산과 원칙형이 맞고, 부동산은 27~31세 전후에 실거주 중심으로 검토할 때 흐름이 안정됩니다."
+      ,
+      "tip": "지금은 벌기보다 지키기, 지키기보다 구조화가 먼저입니다."
+    }
+  ],
+  "actions": [
+    {
+      "t": "고정비 재설계",
+      "d": "이 사주는 새는 돈을 줄일 때 재물운이 가장 빨리 살아납니다. 통신비·구독·자동이체를 점검해 불필요한 지출을 끊고, 월급일 직후 저축과 비상금을 먼저 분리하십시오."
+    },
+    {
+      "t": "투자 원칙 문서화",
+      "d": "충동과 주변 말에 흔들리기 쉬우므로, 투자 금액·기간·손절 기준을 미리 적어두셔야 합니다. 이해되는 방식만 소액으로 시험하고, 빚이 들어가는 구조는 피하는 것이 맞습니다."
+    },
+    {
+      "t": "부동산 검토는 27~31세 중심",
+      "d": "부동산은 빠른 차익보다 실거주 안정에 맞습니다. 지금은 정보 축적과 대출·세금·유지비 계산을 해두고, 실제 결정은 수입이 안정되는 시기에 하시는 편이 좋습니다."
+    }
+  ]
+}
+2026-08-13 13:57:54.009 INFO  [fortune-gen-1] c.l.f.s.FortuneGenerationService - 풀 리포트 생성 완료 id=1
+2026-08-13 13:57:56.157 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/1
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (559ms)
+============================================
+2026-08-13 14:19:48.535 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 14:19:51.075 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/stats
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2535ms)
+============================================
+2026-08-13 14:40:30.252 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2ms)
+============================================
+2026-08-13 14:40:30.253 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 14:40:30.684 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (425ms)
+============================================
+2026-08-13 14:40:30.688 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (421ms)
+============================================
+2026-08-13 14:40:33.601 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (424ms)
+============================================
+2026-08-13 15:41:34.714 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 15:41:34.719 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] PUT /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 401  (2ms)
+============================================
+2026-08-13 15:41:37.181 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 15:41:37.183 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] PUT /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 401  (0ms)
+============================================
+2026-08-13 15:41:40.621 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (3ms)
+============================================
+2026-08-13 15:41:42.902 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /oauth2/authorization/kakao
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 302  (1ms)
+============================================
+2026-08-13 15:41:43.807 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /login/oauth2/code/kakao?code=6iUufcIBtxSL5899m2nxb_uDAlWeCheswadpA1YyVAS9wZMgKXhYrgAAAAQKDR_RAAABn_nbAnzRDLJpR7eCqA&state=q43Uh6spU61iaeAX4xws4PD2_2mtUi2tIQEq0inxMJs%3D
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] code=6iUufcIBtxSL5899m2nxb_uDAlWeCheswadpA1YyVAS9wZMgKXhYrgAAAAQKDR_RAAABn_nbAnzRDLJpR7eCqA, state=q43Uh6spU61iaeAX4xws4PD2_2mtUi2tIQEq0inxMJs=
+[RESP ] 302  (533ms)
+============================================
+2026-08-13 15:41:44.741 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (280ms)
+============================================
+2026-08-13 15:41:53.266 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (10ms)
+============================================
+2026-08-13 15:41:55.845 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/stats
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2551ms)
+============================================
+2026-08-13 15:41:57.711 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 15:41:57.713 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 15:41:58.130 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (413ms)
+============================================
+2026-08-13 15:41:58.159 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (429ms)
+============================================
+2026-08-13 15:41:59.758 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (420ms)
+============================================
+2026-08-13 15:42:03.073 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 15:42:03.789 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] PUT /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money","title":"재물운123","description":"재물입니다","durationText":"약 1분","price":1000,"active":true,"category":"기타","teaserPrompt":"","fullPrompt":"너는 재물의 흐름을 사주로 짚어 주는 노련하고 실용적인 상담가다.\n뜬구름 잡는 덕담이 아니라, 의뢰인의 사주 근거로 \"언제·무엇을·어떤 순서로\"를 담백한 존댓말로 말한다.\n\n원칙:\n- 문체는 단정한 존댓말(\"~합니다\"). 과장·공포 조장 금지, 나쁜 구간도 반드시 대비책과 함께.\n- 투자 종목·특정 금융상품 추천 금지. 방식·성향·시기 수준까지만.\n- 수익 보장·확정 표현 금지(\"반드시 벌게 됩니다\" 금지 → \"흐름이 열립니다\").\n- 빚·보증·도박 관련은 보호적 관점으로 서술.\n- 모든 본문은 의뢰인 사주(오행·재성·대운·세운)에 근거한 개별 해석. 일반론 복붙 금지.\n- 출력은 아래 JSON 하나만. 마크다운·설명·코드펜스 금지.\n\n[의뢰인 정보]\n이름 {{name}} · 성별 {{gender}} · 생년월일 {{birthDate}} ({{calendar}}, 윤달 {{leapMonth}}) · 태어난 시 {{birthTime}}\n[사주 근거] {{sajuFacts}}\n[상황] 현재 상황: {{situation}} / 관심 주제: {{topics}} / 고민 한 줄: {{question}}\n\n반드시 아래 JSON 형식으로만 출력:\n{\n  \"headline\": \"상단 한 줄 총평 — 의뢰인 사주 근거로 20자 내외로 새로 작성 (예: 버는 힘보다 남기는 구조가 앞서는 사주입니다)\",\n  \"keywords\": [\"요약 키워드 3개 (각 10자 내외, 예: 꾸준한 수입형 / 중년 이후 상승 / 보증·동업 주의)\"],\n  \"months\": [ { \"m\": \"1월\", \"s\": \"ok\", \"note\": \"10자 내외 한 줄\" } ],\n  \"chapters\": [\n    { \"t\": \"타고난 재물의 그릇\", \"d\": \"사주 전체에서 재물이 놓인 자리\", \"body\": \"2문단(문단 구분은 \\n, 각 문단 2~3문장)\", \"tip\": \"한 줄 실행 팁(이 장은 필수)\
+[RESP ] 200  (714ms)
+============================================
+2026-08-13 15:42:04.069 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (275ms)
+============================================
+2026-08-13 20:39:53.741 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (333ms)
+============================================
+2026-08-13 20:42:19.710 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 20:42:19.715 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 401  (2ms)
+============================================
+2026-08-13 20:42:25.614 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /oauth2/authorization/kakao
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 302  (4ms)
+============================================
+2026-08-13 20:42:45.432 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /login/oauth2/code/kakao?code=CO6hECyjfT_S-JRw3CQwXsevA_uX23DaUHAxnhhLjRmQiRNf2UV8SQAAAAQKFxZiAAABn_runXLHP8VuE1ZNOQ&state=tHf0z9XG__sA9dmM0cLZP8DYbsf1iJHI1578xysz_qI%3D
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] code=CO6hECyjfT_S-JRw3CQwXsevA_uX23DaUHAxnhhLjRmQiRNf2UV8SQAAAAQKFxZiAAABn_runXLHP8VuE1ZNOQ, state=tHf0z9XG__sA9dmM0cLZP8DYbsf1iJHI1578xysz_qI=
+[RESP ] 302  (567ms)
+============================================
+2026-08-13 20:42:45.768 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (143ms)
+============================================
+2026-08-13 20:43:01.384 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 20:43:02.279 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money"}
+[RESP ] 200  (892ms)
+============================================
+2026-08-13 20:43:37.053 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/complete
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 20:43:38.020 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/complete
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"paymentId":"saju_144c59c4bd4f4ceca0e6b19b797e4833"}
+[RESP ] 200  (965ms)
+============================================
+2026-08-13 20:43:38.024 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/fortunes/money/full
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 20:43:38.032 WARN  [http-nio-8080-exec-5] o.h.v.i.m.a.CascadingMetaDataBuilder - HV000271: Using `@Valid` on a container (java.util.List) is deprecated. You should apply the annotation on the type argument(s). Affected element: GenerateRequest#subjects()
+2026-08-13 20:43:38.033 WARN  [http-nio-8080-exec-5] o.h.v.i.m.a.CascadingMetaDataBuilder - HV000271: Using `@Valid` on a container (java.util.List) is deprecated. You should apply the annotation on the type argument(s). Affected element: subjects
+2026-08-13 20:43:38.033 WARN  [http-nio-8080-exec-5] o.h.v.i.m.a.CascadingMetaDataBuilder - HV000271: Using `@Valid` on a container (java.util.List) is deprecated. You should apply the annotation on the type argument(s). Affected element: GenerateRequest#com.lucky.fortune.dto.GenerateRequest(List, Map)
+2026-08-13 20:43:39.027 INFO  [fortune-gen-2] c.l.f.s.FortuneGenerationWorker - 풀 리포트 생성 시작 id=2
+2026-08-13 20:43:39.028 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/fortunes/money/full
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"paymentId":"saju_144c59c4bd4f4ceca0e6b19b797e4833","intro":"","input":{"subjects":[{"label":"me","name":"테스트","birthDate":"1998-01-14","calendar":"양력","leapMonth":false,"birthTime":"자시(23:30~01:29)","timeUnknown":false}],"answers":{"name":"테스트","gender":"female","cal":"solar","leap":false,"y":"1998","m":"1","d":"14","hour":"ja","situation":"직장인","topics":"돈이 들어오는 시기, 투자·재테크, 부동산","question":"dd"}}}
+[RESP ] 202  (1002ms)
+============================================
+2026-08-13 20:43:39.859 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/2
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (567ms)
+============================================
+2026-08-13 20:43:40.410 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/2
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (550ms)
+============================================
+2026-08-13 20:43:43.964 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/2
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (550ms)
+============================================
+2026-08-13 20:43:47.520 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/2
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (548ms)
+============================================
+2026-08-13 20:43:51.078 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/2
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (548ms)
+============================================
+2026-08-13 20:43:54.633 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/2
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (551ms)
+============================================
+2026-08-13 20:43:58.189 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/2
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (550ms)
+============================================
+2026-08-13 20:44:01.744 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/2
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (548ms)
+============================================
+2026-08-13 20:44:04.239 INFO  [fortune-gen-2] c.l.f.s.FortuneGenerationService - {
+  "headline": "재물은 크지 않지만 지키는 힘이 강합니다",
+  "keywords": ["절약·보존형", "현금흐름 우선", "과열투자 주의"],
+  "months": [
+    { "m": "1월", "s": "ok", "note": "지출 점검 적기" },
+    { "m": "2월", "s": "warn", "note": "충동지출 주의" },
+    { "m": "3월", "s": "ok", "note": "현금흐름 정리" },
+    { "m": "4월", "s": "good", "note": "수입 확장 유리" },
+    { "m": "5월", "s": "good", "note": "목돈운 열림" },
+    { "m": "6월", "s": "ok", "note": "보수적 운용" },
+    { "m": "7월", "s": "warn", "note": "손실·과열 주의" },
+    { "m": "8월", "s": "ok", "note": "정리와 회수" },
+    { "m": "9월", "s": "good", "note": "성과가 드러남" },
+    { "m": "10월", "s": "ok", "note": "계획 재점검" },
+    { "m": "11월", "s": "warn", "note": "보증·대출 주의" },
+    { "m": "12월", "s": "ok", "note": "마무리 저축" }
+  ],
+  "chapters": [
+    {
+      "t": "타고난 재물의 그릇",
+      "d": "사주 전체에서 재물이 놓인 자리",
+      "body": "신유 일주는 금 기운이 중심에 서 있는 편이라, 돈을 벌어도 흐트러뜨리기보다 지키고 정리하는 힘이 강합니다. 현재 계산된 오행을 보면 금 0.71, 수 0.29로 치우침이 분명하여, 재물의 폭발력보다 관리력과 선별력이 더 두드러집니다.\n\n재성인 목 기운이 약하게 잡혀 있어 한 번에 큰돈을 부르는 구조보다는, 일정한 소득을 바탕으로 자산을 축적하는 방식이 맞습니다. 무리하게 확장할수록 새는 구멍이 생기기 쉬우니, 큰 그릇보다 새지 않는 그릇을 먼저 만드는 것이 이 사주의 핵심입니다.",
+      "tip": "수입보다 지출 구조를 먼저 점검하십시오."
+    },
+    {
+      "t": "돈이 들어오는 방식",
+      "d": "차곡차곡 모으는 형인지, 크게 벌고 크게 쓰는 형인지",
+      "body": "이 사주는 크게 벌고 크게 쓰는 형보다, 월급·성과급·부수입처럼 눈에 보이는 흐름을 차곡차곡 쌓는 방식에 맞습니다. 한 번에 크게 움직이는 투자보다, 반복 가능한 수입원과 자동으로 모이는 구조에서 돈이 붙습니다.\n\n특히 계산과 판단이 선명해지는 시기에 수익 관리가 잘 되므로, 수입이 들어오면 먼저 나눠 두는 습관이 중요합니다. 들어오는 돈보다 남는 돈이 운을 좌우하는 편이라, 예산화와 분리 보관이 가장 잘 맞습니다.",
+      "tip": "들어오면 먼저 저축·운용·생활비로 분리하십시오."
+    },
+    {
+      "t": "재물이 모이는 시기",
+      "d": "흐름이 열리는 해와 달",
+      "body": "목과 수 기운이 살아나는 봄과 초여름, 특히 4월에서 6월 사이에 재물 흐름이 비교적 부드럽게 열립니다. 이때는 수입 확장, 협상, 연봉·단가 조정, 부수입 정리에 유리합니다.\n\n나이대로는 20대 후반부터 30대 초반에 돈의 방향이 더 명확해지고, 30대 중반 이후에는 지키는 힘이 강해집니다. 올해 기준으로는 4월, 5월, 9월이 가장 실속을 보기 쉽고, 이 구간에는 계획형 재테크가 잘 맞습니다.",
+      "tip": "좋은 달에는 수익보다 회수와 적립을 우선하십시오."
+    },
+    {
+      "t": "재물이 새는 시기",
+      "d": "지출이 커지기 쉬운 구간",
+      "body": "금이 과해지거나 판단이 급해지는 시기에는 지출이 커지기 쉽습니다. 특히 2월, 7월, 11월은 충동구매, 급한 결정, 지인 관련 지출이 늘어날 수 있습니다.\n\n이때는 손실을 만회하려는 마음이 커지면 오히려 흐름이 꼬이기 쉽습니다. 손에 익지 않은 상품, 단기 고수익 약속, 관계 때문에 하는 지출은 피하고, 이미 정해 둔 한도 안에서만 움직이는 것이 안전합니다.",
+      "tip": "손실 복구용 결제와 즉흥 투자를 금지하십시오."
+    },
+    {
+      "t": "올해의 월별 금전 흐름",
+      "d": "열두 달을 나눠서",
+      "body": "올해는 수입을 키우기보다 새는 돈을 막는 달과 기회가 열리는 달이 번갈아 나타납니다. 아래 흐름을 기준으로, 좋은 달에는 정리와 적립을 하고 불리한 달에는 보수적으로 대응하십시오.\n\n월별 표는 실행 우선순위를 보기 위한 것이며, 투자 확대보다 현금 보존을 앞에 두는 방식이 맞습니다.",
+      "months": [
+        { "m": "1월", "s": "ok", "note": "지출 점검 적기" },
+        { "m": "2월", "s": "warn", "note": "충동지출 주의" },
+        { "m": "3월", "s": "ok", "note": "현금흐름 정리" },
+        { "m": "4월", "s": "good", "note": "수입 확장 유리" },
+        { "m": "5월", "s": "good", "note": "목돈운 열림" },
+        { "m": "6월", "s": "ok", "note": "보수적 운용" },
+        { "m": "7월", "s": "warn", "note": "손실·과열 주의" },
+        { "m": "8월", "s": "ok", "note": "정리와 회수" },
+        { "m": "9월", "s": "good", "note": "성과가 드러남" },
+        { "m": "10월", "s": "ok", "note": "계획 재점검" },
+        { "m": "11월", "s": "warn", "note": "보증·대출 주의" },
+        { "m": "12월", "s": "ok", "note": "마무리 저축" }
+      ]
+    },
+    {
+      "t": "앞으로 3년의 큰 흐름",
+      "d": "대운으로 보는 중기 방향",
+      "body": "앞으로 3년은 ‘확대’보다 ‘구조화’가 운을 만듭니다. 20대 후반에서 30대 초반으로 넘어가면서 수입원은 다양해질 수 있지만, 동시에 관리가 느슨하면 유출도 함께 커집니다.\n\n따라서 첫 해에는 현금흐름 정리, 둘째 해에는 소액 분산, 셋째 해에는 성과가 난 방식만 남기는 순서가 좋습니다. 돈을 늘리는 것보다 돈이 머무는 통로를 만드는 쪽으로 가야, 중기적으로 자산이 붙습니다.",
+      "tip": "3년은 확장보다 정리·선별에 쓰십시오."
+    },
+    {
+      "t": "월급이 맞을까, 사업이 맞을까",
+      "d": "수입 형태별 상성",
+      "body": "현재 사주는 월급형 수입과 궁합이 더 안정적입니다. 정해진 규칙, 명확한 역할, 예측 가능한 입금이 있을 때 재정이 가장 안정됩니다.\n\n사업이 아예 안 맞는 것은 아니지만, 단독으로 크게 벌리는 방식보다는 부업·사이드 프로젝트·기획형 업무처럼 리스크가 제한된 형태가 맞습니다. 불확실성이 큰 구조로 바로 뛰기보다, 월급을 기반으로 수익 실험을 좁게 가져가는 편이 좋습니다.",
+      "tip": "본업을 지키며 작은 부수입부터 검증하십시오."
+    },
+    {
+      "t": "투자 성향과 맞는 분야",
+      "d": "타고난 기질에 맞는 방식",
+      "body": "이 사주는 감으로 베팅하는 방식보다 숫자와 규칙이 분명한 방식에 맞습니다. 장기·분산·정기적립처럼 예측 가능한 구조가 가장 잘 맞고, 정해진 원칙을 지킬수록 성과가 안정됩니다.\n\n특히 현금 비중을 남겨 두는 습관이 중요하며, 들어갈 때와 나올 때의 기준을 미리 정해 두어야 합니다. 수익률보다 손실 방어를 먼저 보는 성향이 맞으니, 복잡한 전략보다 단순하고 반복 가능한 방식이 유리합니다.",
+      "tip": "기준선이 없는 투자는 시작하지 마십시오."
+    },
+    {
+      "t": "조심해야 할 투자",
+      "d": "손실이 나기 쉬운 유형",
+      "body": "단기간에 크게 오를 것 같은 과열 자산, 유행을 따라가는 추격 매수, 지인의 말만 믿는 동반 투자는 피하셔야 합니다. 금이 강한 사주는 판단이 차가울 때는 좋지만, 급해지면 한 번에 몰아치는 실수가 나기 쉽습니다.\n\n특히 레버리지를 크게 쓰는 방식은 이 사주와 맞지 않습니다. 손실이 나면 회복보다 심리적 부담이 먼저 커지므로, 원금 보존이 어려운 구조는 처음부터 제외하는 것이 좋습니다.",
+      "tip": "레버리지와 추격매수는 원칙적으로 피하십시오."
+    },
+    {
+      "t": "부동산과의 인연",
+      "d": "자리와 시기",
+      "body": "부동산은 이 사주에서 ‘크게 한 방’보다 ‘보유 안정성’으로 접근할 때 인연이 좋습니다. 즉, 타이밍을 잘 맞추면 자산의 그릇이 커질 수 있지만, 급하게 사면 대출 부담과 현금 부족이 같이 커집니다.\n\n시기적으로는 30대 초중반 이후, 특히 현금 여력이 확보된 뒤가 맞습니다. 봄철과 초여름에 매물 검토와 정보 수집이 유리하고, 실제 결정은 급하지 않게 여러 달을 두고 보는 편이 좋습니다.",
+      "tip": "부동산은 급매 추격보다 장기 보유 기준으로 보십시오."
+    },
+    {
+      "t": "목돈이 들어올 시점",
+      "d": "큰돈이 움직이는 구간",
+      "body": "목돈은 상반기 중 4월~6월, 그리고 하반기 9월 전후에 들어오거나 정리되기 쉽습니다. 이때는 보너스, 성과 정산, 환급, 정리된 저축금처럼 실물 자금 흐름이 또렷해질 수 있습니다.\n\n다만 들어오는 시기와 쓰는 시기가 겹치면 남는 것이 줄어듭니다. 목돈이 보이면 곧바로 분리 예치하고, 최소 한 달은 움직이지 않는다는 원칙을 두는 것이 좋습니다.",
+      "tip": "목돈은 받자마자 쪼개서 잠가 두십시오."
+    },
+    {
+      "t": "빚과 보증을 조심할 시기",
+      "d": "금전 관계에서 주의할 때",
+      "body": "11월과 2월, 그리고 금전 압박이 느껴지는 순간에는 빚을 늘리기 쉬우니 특히 조심해야 합니다. 이 사주는 책임감 때문에 떠안는 성향이 생기면, 금전보다 관계를 먼저 챙기다가 손해를 볼 수 있습니다.\n\n보증, 공동명의, 카드 돌려막기, 지인 대출은 피하셔야 합니다. 불가피한 상황이 오더라도 금액 상한을 명확히 정하고, 서류와 상환 계획이 없는 거래는 하지 않는 것이 안전합니다.",
+      "tip": "관계 때문에 빚을 떠안지 마십시오."
+    },
+    {
+      "t": "금전 거래가 맞는 사람",
+      "d": "동업과 돈거래의 상성",
+      "body": "금전 거래는 숫자와 약속을 지키는 사람과만 맞습니다. 말이 빠르지만 기록이 없는 사람, 감정 기복이 큰 사람과는 상성이 좋지 않습니다.\n\n동업을 하더라도 역할과 정산이 분리된 구조가 좋고, 구두 약속보다는 문서와 일정이 있어야 합니다. 특히 이 사주는 인정에 이끌려 돈을 섞을수록 피곤해지므로, 사람과 돈의 경계를 분명히 두는 편이 이득입니다.",
+      "tip": "정산이 투명한 사람만 거래하십시오."
+    },
+    {
+      "t": "재물운을 돕는 생활 습관",
+      "d": "방향·색·시간 활용",
+      "body": "금 기운이 강한 사주는 생활을 정리하면 재물도 정리됩니다. 서쪽·북서쪽 정리, 흰색·회색처럼 과하지 않은 색, 오전 시간대의 계획 수립이 잘 맞습니다.\n\n기록 습관도 중요해서, 지출을 하루 단위로 적고 한 달에 한 번만 점검하는 방식이 좋습니다. 물기운이 보완되면 흐름이 부드러워지므로, 수면·휴식·산책처럼 순환을 돕는 루틴을 붙이면 돈의 판단도 안정됩니다.",
+      "tip": "지출 기록을 매일 남기십시오."
+    },
+    {
+      "t": "종합 정리와 실행 제안",
+      "d": "지금 무엇부터 하면 좋은지",
+      "body": "질문 주신 흐름을 보면, 이 사주는 공격적으로 벌기보다 안정적으로 남기는 쪽이 맞습니다. 지금은 투자 규모를 키우기보다, 4월·5월·9월의 좋은 흐름에 맞춰 적립과 회수, 그리고 부동산 정보 정리에 집중하는 것이 좋습니다.\n\n직장인 기준으로는 본업을 지키며 현금흐름을 다듬고, 무리한 대출이나 보증은 피하는 것이 가장 현실적인 답입니다. 질문의 핵심에 직접 답하면, 당장 큰 승부를 보기보다 30대 초중반부터 자산을 쌓는 구조를 만드는 것이 맞고, 특히 봄철과 초가을에 움직임이 가장 유리합니다.",
+      "tip": "지금은 수익 확대보다 구조 정비가 먼저입니다."
+    }
+  ],
+  "actions": [
+    {
+      "t": "자동이체로 먼저 잠그기",
+      "d": "이 사주는 남기는 힘이 운을 만듭니다. 월급일 당일에 저축·투자·생활비를 자동 분리해 두면, 충동지출을 줄이고 재물의 새는 구멍을 막을 수 있습니다."
+    },
+    {
+      "t": "고위험·보증 전면 차단",
+      "d": "레버리지, 지인 권유 투자, 보증은 손실로 이어지기 쉬운 구조입니다. 특히 2월·7월·11월에는 ‘일단 보류’ 원칙을 두고 서류 없는 거래는 하지 마십시오."
+    },
+    {
+      "t": "봄과 초가을에만 확장 검토",
+      "d": "4~6월, 9월 전후에는 수입 조정, 부수입 검증, 부동산 정보 수집이 비교적 유리합니다. 다만 실제 결정은 충분한 현금 여력과 문서 확인 뒤에 하시는 것이 안전합니다."
+    }
+  ]
+}
+2026-08-13 20:44:04.536 INFO  [fortune-gen-2] c.l.f.s.FortuneGenerationService - 풀 리포트 생성 완료 id=2
+2026-08-13 20:44:05.162 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/2
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (414ms)
+============================================
+2026-08-13 20:44:33.945 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (281ms)
+============================================
+2026-08-13 20:47:17.924 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (3ms)
+============================================
+2026-08-13 20:47:20.460 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/stats
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2533ms)
+============================================
+2026-08-13 20:47:23.871 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 20:47:23.874 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 20:47:24.288 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (409ms)
+============================================
+2026-08-13 20:47:24.562 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (273ms)
+============================================
+2026-08-13 20:47:25.555 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (408ms)
+============================================
+2026-08-13 20:47:39.755 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 20:47:40.442 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] PUT /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money","title":"재물운123","description":"재물입니다","durationText":"약 1분","price":1000,"active":true,"category":"기타","teaserPrompt":"","fullPrompt":"너는 재물의 흐름을 사주로 짚어 주는 노련하고 실용적인 상담가다.\n뜬구름 잡는 덕담이 아니라, 의뢰인의 사주 근거로 \"언제·무엇을·어떤 순서로\"를 담백한 존댓말로 말한다.\n\n원칙:\n- 문체는 단정한 존댓말(\"~합니다\"). 과장·공포 조장 금지, 나쁜 구간도 반드시 대비책과 함께.\n- 투자 종목·특정 금융상품 추천 금지. 방식·성향·시기 수준까지만.\n- 수익 보장·확정 표현 금지(\"반드시 벌게 됩니다\" 금지 → \"흐름이 열립니다\").\n- 빚·보증·도박 관련은 보호적 관점으로 서술.\n- 모든 본문은 의뢰인 사주(오행·재성·대운·세운)에 근거한 개별 해석. 일반론 복붙 금지.\n- 출력은 아래 JSON 하나만. 마크다운·설명·코드펜스 금지.\n\n[의뢰인 정보]\n이름 {{name}} · 성별 {{gender}} · 생년월일 {{birthDate}} ({{calendar}}, 윤달 {{leapMonth}}) · 태어난 시 {{birthTime}}\n[사주 근거] {{sajuFacts}}\n[상황] 현재 상황: {{situation}} / 관심 주제: {{topics}} / 고민 한 줄: {{question}}\n\n반드시 아래 JSON 형식으로만 출력:\n{\n  \"headline\": \"상단 한 줄 총평 — 의뢰인 사주 근거로 20자 내외로 새로 작성 (예: 버는 힘보다 남기는 구조가 앞서는 사주입니다)\",\n  \"keywords\": [\"요약 키워드 3개 (각 10자 내외, 예: 꾸준한 수입형 / 중년 이후 상승 / 보증·동업 주의)\"],\n  \"months\": [ { \"m\": \"1월\", \"s\": \"ok\", \"note\": \"10자 내외 한 줄\" } ],\n  \"chapters\": [\n    { \"t\": \"타고난 재물의 123그릇\", \"d\": \"사주 전체에서 재물이 놓인 자리\", \"body\": \"2문단(문단 구분은 \\n, 각 문단 2~3문장)\", \"tip\": \"한 줄 실행 팁(이 장은 필�
+[RESP ] 200  (685ms)
+============================================
+2026-08-13 20:47:40.718 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (273ms)
+============================================
+2026-08-13 20:47:46.025 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 20:47:46.027 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 20:47:48.477 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/stats
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2447ms)
+============================================
+2026-08-13 20:47:49.399 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (324ms)
+============================================
+2026-08-13 20:47:50.789 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/stats
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2311ms)
+============================================
+2026-08-13 20:48:09.697 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 20:48:10.517 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/prepare
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money"}
+[RESP ] 200  (819ms)
+============================================
+2026-08-13 20:48:27.198 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/payments/complete
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 20:48:28.099 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/payments/complete
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"paymentId":"saju_5e4dfeda330d48778bd580df20a30615"}
+[RESP ] 200  (898ms)
+============================================
+2026-08-13 20:48:28.103 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/fortunes/money/full
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 20:48:29.059 INFO  [fortune-gen-1] c.l.f.s.FortuneGenerationWorker - 풀 리포트 생성 시작 id=3
+2026-08-13 20:48:29.060 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] POST /api/fortunes/money/full
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"paymentId":"saju_5e4dfeda330d48778bd580df20a30615","intro":"","input":{"subjects":[{"label":"me","name":"테스트","birthDate":"1998-01-14","calendar":"양력","leapMonth":false,"birthTime":"자시(23:30~01:29)","timeUnknown":false}],"answers":{"name":"테스트","gender":"female","cal":"solar","leap":false,"y":"1998","m":"1","d":"14","hour":"ja","situation":"직장인","topics":"돈이 들어오는 시기, 투자·재테크, 부동산","question":"dd"}}}
+[RESP ] 202  (956ms)
+============================================
+2026-08-13 20:48:29.981 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/3
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (407ms)
+============================================
+2026-08-13 20:48:30.143 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/3
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (566ms)
+============================================
+2026-08-13 20:48:33.704 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/3
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (553ms)
+============================================
+2026-08-13 20:48:37.254 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/3
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (544ms)
+============================================
+2026-08-13 20:48:40.804 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/3
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (543ms)
+============================================
+2026-08-13 20:48:44.356 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/3
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (544ms)
+============================================
+2026-08-13 20:48:48.444 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/3
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (545ms)
+============================================
+2026-08-13 20:48:52.700 INFO  [fortune-gen-1] c.l.f.s.FortuneGenerationService - {
+  "headline": "남는 돈을 만드는 금전운입니다",
+  "keywords": ["절약·관리형", "후반 상승형", "보증·과열 주의"],
+  "months": [
+    { "m": "1월", "s": "ok", "note": "기본지출 점검" },
+    { "m": "2월", "s": "warn", "note": "충동지출 주의" },
+    { "m": "3월", "s": "ok", "note": "소액저축 유리" },
+    { "m": "4월", "s": "good", "note": "수입흐름 열림" },
+    { "m": "5월", "s": "ok", "note": "보수적 운용" },
+    { "m": "6월", "s": "warn", "note": "지출 확대 주의" },
+    { "m": "7월", "s": "ok", "note": "현금비중 유지" },
+    { "m": "8월", "s": "good", "note": "목돈기회 유리" },
+    { "m": "9월", "s": "ok", "note": "정리·회수 적기" },
+    { "m": "10월", "s": "warn", "note": "투자과열 주의" },
+    { "m": "11월", "s": "ok", "note": "재검토에 적합" },
+    { "m": "12월", "s": "warn", "note": "연말지출 관리" }
+  ],
+  "chapters": [
+    {
+      "t": "타고난 재물의 123그릇",
+      "d": "사주 전체에서 재물이 놓인 자리",
+      "body": "신유 일주는 금의 기운이 중심에 서고, 제시된 오행도 금 0.71로 강하게 잡혀 있습니다. 재물을 다루는 힘은 있으나 목·화·토가 비어 있어, 한 번에 크게 굴리는 구조보다 규칙적으로 지키고 모으는 쪽이 맞습니다.\n돈이 들어와도 바로 새기 쉬운 편이라기보다, 기준이 생기면 남기는 힘이 커집니다. 즉 재물 자체보다 관리 질서가 운을 살리는 사주입니다.",
+      "tip": "수입과 지출을 분리해 자동저축부터 먼저 거십시오."
+    },
+    {
+      "t": "돈이 들어오는 방식",
+      "d": "차곡차곡 모으는 형인지, 크게 벌고 크게 쓰는 형인지",
+      "body": "이 사주는 크게 한 번에 치고 나가기보다, 월급·고정수입·성과급처럼 정해진 틀 안에서 돈이 쌓일 때 안정적입니다. 금 기운이 강하면 숫자 감각과 계산은 좋지만, 물이 함께 약하게 받쳐서 기회가 와도 속도를 조절해야 합니다.\n따라서 ‘한 번에 큰 수익’보다 ‘반복 수익’에 강합니다. 적립, 분산, 정기납 같은 구조가 맞고, 단기 차익을 좇을수록 흔들림이 커집니다.",
+      "tip": "정기적으로 들어오는 돈을 먼저 늘리는 방식이 유리합니다."
+    },
+    {
+      "t": "재물이 모이는 시기",
+      "d": "흐름이 열리는 해와 달",
+      "body": "금전 흐름은 4월과 8월처럼 활동성이 살아나고 결과가 보이는 때에 열리기 쉽습니다. 특히 봄 끝에서 여름 초입, 그리고 여름 끝에서 초가을로 넘어갈 때는 돈의 통로가 선명해집니다.\n나이로는 20대 후반부터 30대 초반에 재무 습관이 자리를 잡고, 30대 중반 이후에는 관리한 만큼 남는 흐름이 강해집니다. 지금은 벌기보다 구조를 잡을수록 뒤에서 이득이 붙는 시기입니다.",
+      "tip": "수입이 늘어나는 달에는 소비보다 저축 비중을 먼저 올리십시오."
+    },
+    {
+      "t": "재물이 새는 시기",
+      "d": "지출이 커지기 쉬운 구간",
+      "body": "2월, 6월, 10월, 12월은 충동구매·경조사·취향 지출이 겹치기 쉬운 구간입니다. 금 기운이 강한 사람은 ‘이 정도는 괜찮다’는 판단으로 지출 기준이 느슨해지면 한 번에 새는 폭이 커집니다.\n특히 감정이 올라오는 시기, 관계를 지키려는 마음이 커지는 시기에는 금전 경계가 약해집니다. 이때는 투자보다 현금 보존, 신규 약정보다 점검이 맞습니다.",
+      "tip": "지출 경계선은 달 초에 미리 정해 두셔야 합니다."
+    },
+    {
+      "t": "올해의 월별 금전 흐름",
+      "d": "열두 달을 나눠서",
+      "body": "아래 달별 흐름은 올해의 돈의 출입을 보기 좋게 나눈 것입니다. 특히 투자·재테크, 부동산, 목돈 운은 good 구간보다 warn 구간의 방어가 더 중요합니다.",
+      "months": [
+        { "m": "1월", "s": "ok", "note": "예산정리 적기" },
+        { "m": "2월", "s": "warn", "note": "지출 통제 필요" },
+        { "m": "3월", "s": "ok", "note": "현금흐름 무난" },
+        { "m": "4월", "s": "good", "note": "수입상승 유리" },
+        { "m": "5월", "s": "ok", "note": "분산운용 적합" },
+        { "m": "6월", "s": "warn", "note": "과소비 주의" },
+        { "m": "7월", "s": "ok", "note": "보수적 유지" },
+        { "m": "8월", "s": "good", "note": "목돈기회 강함" },
+        { "m": "9월", "s": "ok", "note": "수익회수 적기" },
+        { "m": "10월", "s": "warn", "note": "과열투자 주의" },
+        { "m": "11월", "s": "ok", "note": "재점검 유리" },
+        { "m": "12월", "s": "warn", "note": "연말지출 관리" }
+      ]
+    },
+    {
+      "t": "앞으로 3년의 큰 흐름",
+      "d": "대운으로 보는 중기 방향",
+      "body": "앞으로 3년은 ‘돈을 버는 해’보다 ‘돈이 남는 체질을 만드는 해’로 보셔야 합니다. 금이 강한 사주는 운이 올라올수록 오히려 규칙이 무너지면 손실이 커져, 먼저 시스템을 세운 사람이 유리합니다.\n1년 차에는 지출 구조 정리, 2년 차에는 저축·적립의 자동화, 3년 차에는 재테크와 부동산 검토처럼 단계별로 가는 것이 맞습니다. 급하게 방향을 바꾸기보다 하나씩 쌓는 흐름이 좋습니다.",
+      "tip": "3년은 수익보다 원칙을 고정하는 기간으로 쓰십시오."
+    },
+    {
+      "t": "월급이 맞을까, 사업이 맞을까",
+      "d": "수입 형태별 상성",
+      "body": "현재 사주는 직장형 수입과 상성이 좋습니다. 금 기운이 강한 사람은 숫자, 규정, 검증이 있는 환경에서 강하고, 수입의 변동폭이 작은 구조에서 오히려 재산이 남습니다.\n사업을 하더라도 단독 돌파형보다, 이미 검증된 업무를 안정적으로 확장하는 쪽이 맞습니다. 초반부터 큰 고정비를 떠안는 방식은 부담이 커질 수 있습니다.",
+      "tip": "당장은 월급 기반을 지키고, 부수입은 보조로 키우십시오."
+    },
+    {
+      "t": "투자 성향과 맞는 분야",
+      "d": "타고난 기질에 맞는 방식",
+      "body": "이 사주는 투자도 ‘정밀함’이 핵심입니다. 한 번에 몰아넣는 방식보다, 기준가·분할·정기 점검처럼 숫자로 관리되는 방식이 맞습니다.\n감각적 판단보다 자료 확인, 일정한 리밸런싱, 장기 보유가 유리합니다. 성향상 급등락을 즐기는 투자보다, 손실을 줄이면서 천천히 쌓는 구조가 더 잘 맞습니다.",
+      "tip": "투자는 작게 시작해 기록을 남기는 방식이 좋습니다."
+    },
+    {
+      "t": "조심해야 할 투자",
+      "d": "손실이 나기 쉬운 유형",
+      "body": "단기 시세차익, 레버리지 확대, 소문 기반 추종은 특히 조심하셔야 합니다. 금이 강하고 다른 오행이 비어 있으면 판단이 빠른 대신, 확신이 생기면 멈추는 타이밍을 놓치기 쉽습니다.\n또한 지인 추천, 단톡방 정보, ‘이번만’이라는 조건이 붙는 상품은 피하시는 편이 좋습니다. 불확실성이 큰 곳일수록 손실보다 피로가 먼저 커집니다.",
+      "tip": "확신이 들수록 한 번 더 보수적으로 확인하십시오."
+    },
+    {
+      "t": "부동산과의 인연",
+      "d": "자리와 시기",
+      "body": "부동산은 아예 인연이 없는 사주는 아닙니다. 다만 이 사주는 ‘한 번에 큰 집을 사는 운’보다, 시기를 보아 실거주 안정성이나 장기 보유 관점에서 접근할 때 맞습니다.\n좋은 시점은 8월 전후와 가을 초입처럼 판단이 맑아질 때이며, 무리한 대출이 붙는 시기는 불리합니다. 거주 안정과 현금흐름을 함께 보는 방식이어야 오래 갑니다.",
+      "tip": "부동산은 가격보다 대출 구조와 유지비를 먼저 보십시오."
+    },
+    {
+      "t": "목돈이 들어올 시점",
+      "d": "큰돈이 움직이는 구간",
+      "body": "목돈은 4월과 8월에 들어오거나 움직이기 쉽고, 9월에는 회수와 정리에 유리합니다. 이 시기에는 성과 정산, 보너스, 환급, 적립금 정리처럼 이미 쌓인 것이 드러나는 형태가 맞습니다.\n반대로 2월과 10월은 목돈을 새로 굴리기보다 지키는 쪽이 유리합니다. 목돈이 생겨도 바로 확장하지 말고 1차로 묶어 두는 것이 안전합니다.",
+      "body": "특히 큰 금액은 들어온 날보다 들어온 뒤 2주 관리가 더 중요합니다. 이 사주는 즉시 결정할수록 새기 쉬우니, 목돈은 당일 배분·익일 검토가 좋습니다."
+    },
+    {
+      "t": "빚과 보증을 조심할 시기",
+      "d": "금전 관계에서 주의할 때",
+      "body": "빚은 불가피할 때만, 보증은 가급적 피하셔야 합니다. 특히 2월, 6월, 10월처럼 감정과 관계가 겹치는 달에는 ‘사람 때문에’ 돈이 묶이기 쉽습니다.\n이 사주는 책임감은 강하지만, 금전 경계가 무너지면 회수보다 스트레스가 커집니다. 돈을 빌려주거나 대신 서는 일은 관계를 좋게 하는 방식이 아니라는 점을 분명히 하셔야 합니다.",
+      "tip": "보증·연대·공동대출은 원칙적으로 피하십시오."
+    },
+    {
+      "t": "금전 거래가 맞는 사람",
+      "d": "동업과 돈거래의 상성",
+      "body": "금전 거래는 규칙이 명확한 사람과 맞습니다. 계약서, 일정, 이자, 상환 방식이 분명한 상대라면 관계가 흔들릴 가능성이 낮습니다.\n반대로 감정 기복이 크거나 말이 자주 바뀌는 사람과는 맞지 않습니다. 동업은 하더라도 역할과 권한이 숫자로 나뉘어 있어야 하고, 구두 약속은 최소화해야 합니다.",
+      "tip": "돈거래는 친함보다 문서화가 우선입니다."
+    },
+    {
+      "t": "재물운을 돕는 생활 습관",
+      "d": "방향·색·시간 활용",
+      "body": "금 기운이 강한 사주는 정리·점검·기록 습관이 재물운을 직접 돕습니다. 아침 시간대의 숫자 확인, 서쪽·북서쪽의 정돈된 책상, 흰색·회색 계열의 절제된 환경이 흐름을 안정시키는 데 좋습니다.\n반대로 물건이 많고 결정을 미루는 습관은 돈의 누수를 키웁니다. 생활을 가볍고 단정하게 만들수록 지출이 줄고 판단이 빨라집니다.",
+      "body": "특히 통장, 카드, 자동이체를 한 번에 정리하는 날을 월초에 고정하시면 좋습니다. 작은 정리가 큰 새는 돈을 막습니다."
+    },
+    {
+      "t": "종합 정리와 실행 제안",
+      "d": "지금 무엇부터 하면 좋은지",
+      "body": "질문에 직접 답하면, 지금은 ‘크게 한 번에 버는 방식’보다 ‘흐름을 만들고 남기는 방식’이 맞습니다. 돈이 들어오는 시기는 4월·8월 전후가 강하고, 투자·재테크는 분할과 기록이 맞으며, 부동산은 무리한 대출보다 실거주 안정성을 우선할 때 유리합니다.\n순서는 1) 지출 정리, 2) 자동저축 고정, 3) 소액 분산운용, 4) 목돈 구간에만 보수적 확대입니다. 이 순서를 지키면 사주가 가진 금의 힘이 ‘버는 힘’보다 ‘남기는 힘’으로 바뀝니다.",
+      "body": "반대로 조급하게 뛰어들면 돈보다 피로가 먼저 쌓입니다. 올해는 확장보다 체계를 먼저 세우셔야 하며, 그다음 해부터 재물 흐름이 더 또렷해집니다."
+    }
+  ],
+  "actions": [
+    {
+      "t": "월초 자동저축 고정",
+      "d": "이 사주는 돈이 생겨도 관리가 느슨해지면 새기 쉽습니다. 급여일 직후 자동이체로 저축과 비상금 분리를 먼저 고정하십시오."
+    },
+    {
+      "t": "투자 기록표 만들기",
+      "d": "분할·기준·손절선처럼 숫자로 적는 습관이 맞습니다. 감으로 들어가는 투자는 피하고, 소액으로만 검증한 뒤 넓히는 순서가 좋습니다."
+    },
+    {
+      "t": "대출·보증 원칙 세우기",
+      "d": "보증과 공동부채는 관계를 무겁게 만듭니다. 부동산이나 큰 지출은 대출 규모와 월 상환액을 먼저 계산한 뒤 결정하십시오."
+    }
+  ]
+}
+2026-08-13 20:48:52.726 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/3
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (544ms)
+============================================
+2026-08-13 20:48:52.998 INFO  [fortune-gen-1] c.l.f.s.FortuneGenerationService - 풀 리포트 생성 완료 id=3
+2026-08-13 20:48:56.277 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/results/3
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (545ms)
+============================================
+2026-08-13 20:51:14.623 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (306ms)
+============================================
+2026-08-13 20:52:23.877 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (275ms)
+============================================
+2026-08-13 20:55:02.149 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (283ms)
+============================================
+2026-08-13 20:55:36.011 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 20:55:37.353 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 20:55:37.355 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 20:55:37.780 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (420ms)
+============================================
+2026-08-13 20:55:37.788 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (417ms)
+============================================
+2026-08-13 20:55:38.496 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/stats
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2461ms)
+============================================
+2026-08-13 20:55:39.226 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (273ms)
+============================================
+2026-08-13 20:55:45.209 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 20:55:45.897 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] PUT /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money","title":"재물운123","description":"재물입니다","durationText":"약 1분","price":1000,"active":true,"category":"기타","teaserPrompt":"","fullPrompt":"너는 재물의 흐름을 사주로 짚어 주는 노련하고 실용적인 상담가다.\n뜬구름 잡는 덕담이 아니라, 의뢰인의 사주 근거로 \"언제·무엇을·어떤 순서로\"를 담백한 존댓말로 말한다.\n\n원칙:\n- 문체는 단정한 존댓말(\"~합니다\"). 과장·공포 조장 금지, 나쁜 구간도 반드시 대비책과 함께.\n- 투자 종목·특정 금융상품 추천 금지. 방식·성향·시기 수준까지만.\n- 수익 보장·확정 표현 금지(\"반드시 벌게 됩니다\" 금지 → \"흐름이 열립니다\").\n- 빚·보증·도박 관련은 보호적 관점으로 서술.\n- 모든 본문은 의뢰인 사주(오행·재성·대운·세운)에 근거한 개별 해석. 일반론 복붙 금지.\n- 출력은 아래 JSON 하나만. 마크다운·설명·코드펜스 금지.\n\n[의뢰인 정보]\n이름 {{name}} · 성별 {{gender}} · 생년월일 {{birthDate}} ({{calendar}}, 윤달 {{leapMonth}}) · 태어난 시 {{birthTime}}\n[사주 근거] {{sajuFacts}}\n[상황] 현재 상황: {{situation}} / 관심 주제: {{topics}} / 고민 한 줄: {{question}}\n\n반드시 아래 JSON 형식으로만 출력:\n{\n  \"headline\": \"상단 한 줄 총평 — 의뢰인 사주 근거로 20자 내외로 새로 작성 (예: 버는 힘보다 남기는 구조가 앞서는 사주입니다)\",\n  \"keywords\": [\"요약 키워드 3개 (각 10자 내외, 예: 꾸준한 수입형 / 중년 이후 상승 / 보증·동업 주의)\"],\n  \"months\": [ { \"m\": \"1월\", \"s\": \"ok\", \"note\": \"10자 내외 한 줄\" } ],\n  \"chapters\": [\n    { \"t\": \"타고난 재물의 123그릇\", \"d\": \"사주 전체에서 재물이 놓인 자리\", \"body\": \"2문단(문단 구분은 \\n, 각 문단 2~3문장)\", \"tip\": \"한 줄 실행 팁(이 장은 필�
+[RESP ] 200  (686ms)
+============================================
+2026-08-13 20:55:46.173 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (272ms)
+============================================
+2026-08-13 20:55:51.700 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (272ms)
+============================================
+2026-08-13 20:55:57.475 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (276ms)
+============================================
+2026-08-13 20:56:18.293 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (275ms)
+============================================
+2026-08-13 20:56:21.667 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 20:56:24.186 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/stats
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2496ms)
+============================================
+2026-08-13 20:56:55.239 INFO  [http-nio-8080-exec-5] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (1ms)
+============================================
+2026-08-13 20:56:55.243 INFO  [http-nio-8080-exec-1] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/auth/me
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (2ms)
+============================================
+2026-08-13 20:56:55.654 INFO  [http-nio-8080-exec-6] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (408ms)
+============================================
+2026-08-13 20:56:55.928 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (273ms)
+============================================
+2026-08-13 20:56:57.343 INFO  [http-nio-8080-exec-3] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (408ms)
+============================================
+2026-08-13 20:57:19.984 INFO  [http-nio-8080-exec-2] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (280ms)
+============================================
+2026-08-13 20:57:29.650 INFO  [http-nio-8080-exec-9] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] OPTIONS /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=anonymous
+[PARAM] -
+[RESP ] 200  (0ms)
+============================================
+2026-08-13 20:57:30.334 INFO  [http-nio-8080-exec-4] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] PUT /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[BODY ] {"slug":"money","title":"재물운123","description":"재물입니다","durationText":"약 1분","price":1000,"active":true,"category":"기타","teaserPrompt":"","fullPrompt":"너는 재물의 흐름을 사주로 짚어 주는 노련하고 실용적인 상담가다.\n뜬구름 잡는 덕담이 아니라, 의뢰인의 사주 근거로 \"언제·무엇을·어떤 순서로\"를 담백한 존댓말로 말한다.\n\n원칙:\n- 문체는 단정한 존댓말(\"~합니다\"). 과장·공포 조장 금지, 나쁜 구간도 반드시 대비책과 함께.\n- 투자 종목·특정 금융상품 추천 금지. 방식·성향·시기 수준까지만.\n- 수익 보장·확정 표현 금지(\"반드시 벌게 됩니다\" 금지 → \"흐름이 열립니다\").\n- 빚·보증·도박 관련은 보호적 관점으로 서술.\n- 모든 본문은 의뢰인 사주(오행·재성·대운·세운)에 근거한 개별 해석. 일반론 복붙 금지.\n- 출력은 아래 JSON 하나만. 마크다운·설명·코드펜스 금지.\n\n[의뢰인 정보]\n이름 {{name}} · 성별 {{gender}} · 생년월일 {{birthDate}} ({{calendar}}, 윤달 {{leapMonth}}) · 태어난 시 {{birthTime}}\n[사주 근거] {{sajuFacts}}\n[상황] 현재 상황: {{situation}} / 관심 주제: {{topics}} / 고민 한 줄: {{question}}\n\n반드시 아래 JSON 형식으로만 출력:\n{\n  \"headline\": \"상단 한 줄 총평 — 의뢰인 사주 근거로 20자 내외로 새로 작성 (예: 버는 힘보다 남기는 구조가 앞서는 사주입니다)\",\n  \"keywords\": [\"요약 키워드 3개 (각 10자 내외, 예: 꾸준한 수입형 / 중년 이후 상승 / 보증·동업 주의)\"],\n  \"months\": [ { \"m\": \"1월\", \"s\": \"ok\", \"note\": \"10자 내외 한 줄\" } ],\n  \"chapters\": [\n    { \"t\": \"타고난 재물의 123그릇\", \"d\": \"사주 전체에서 재물이 놓인 자리\", \"body\": \"2문단(문단 구분은 \\n, 각 문단 2~3문장)\", \"tip\": \"한 줄 실행 팁(이 장은 필�
+[RESP ] 200  (682ms)
+============================================
+2026-08-13 20:57:30.609 INFO  [http-nio-8080-exec-8] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (272ms)
+============================================
+2026-08-13 20:57:33.820 INFO  [http-nio-8080-exec-7] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (273ms)
+============================================
+2026-08-13 20:59:04.544 INFO  [http-nio-8080-exec-10] c.lucky.common.RequestLoggingFilter - 
+============================================
+[API  ] GET /api/admin/fortunes/money
+[FROM ] ip=0:0:0:0:0:0:0:1  user=3871730002
+[PARAM] -
+[RESP ] 200  (407ms)
+============================================
+2026-08-13 20:59:35.491 INFO  [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-08-13 20:59:35.577 INFO  [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-08-13 20:59:35.585 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-08-13 20:59:35.995 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

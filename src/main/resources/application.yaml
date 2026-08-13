@@ -1,0 +1,81 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: lucky
+  sql:
+    init:
+      mode: always   # 부팅 시 schema.sql 실행(테이블 자동 생성). CREATE TABLE IF NOT EXISTS 라 매번 떠도 안전
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL:jdbc:postgresql://db.dfvodhavupoeznjdnshw.supabase.co:5432/postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: ${KAKAO_CLIENT_ID}
+            client-secret: ${KAKAO_CLIENT_SECRET}
+            client-authentication-method: client_secret_post
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - profile_nickname
+            client-name: Kakao
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+
+# 주의: DB 접속정보는 .env(환경변수)로 주입.
+#  - DB_PASSWORD : Supabase 프로젝트 DB 비밀번호 (필수)
+#  - IPv4 네트워크면 Session Pooler 사용 → DB_URL / DB_USERNAME 을 풀러 값으로 .env 에서 덮어쓸 것
+#  위 기본 url 은 Direct connection(IPv6 전용)이라 로컬 IPv4 망에선 연결이 안 될 수 있음.
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.lucky
+  configuration:
+    map-underscore-to-camel-case: true
+
+server:
+  forward-headers-strategy: framework   # nginx/Caddy 등 리버스 프록시 뒤: X-Forwarded-* 신뢰해 원래 https/host 인식
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        same-site: none   # 운영 기본(cross-site)
+        secure: true      # 운영 기본(HTTPS)
+
+app:
+  log:
+    dir: /home/ubuntu/logs   # 서버 로그 파일 디렉터리(운영). 로컬은 application-local 에서 override
+  cookie:
+    domain: trendsaju.com   # CSRF 쿠키를 상위 도메인으로 → www/api 서브도메인 공유. 앞에 점(.) 붙이면 톰캣 RFC6265가 invalid로 거부하니 점 없이! 점 없어도 서브도메인 다 커버됨. 로컬은 application-local에서 빈 값
+  frontend:
+    url: https://www.trendsaju.com   # 기본=운영. 로컬은 local 프로파일에서 override
+  cors:
+    allowed-origins: https://saju-chi-tawny.vercel.app,http://localhost:3000,https://www.trendsaju.com  # CORS 허용 출처(배포 프론트 + 로컬 개발). 콤마 사이 공백 X, 끝에 슬래시 X
+
+openai:
+  api-key: ${OPEN_AI_KEY}
+  base-url: https://api.openai.com/v1
+  model: gpt-5.4-mini          # 필요 시 변경 (예: gpt-5.5). 잘못된 모델명이면 OpenAI가 4xx로 알려줌
+  max-completion-tokens: 1200
+  timeout-seconds: 120
+
+portone:
+  # V2 API Secret — 서버 전용 비밀. 포트원 콘솔 > 결제연동 > V2 API Secret 발급. 절대 프론트/깃에 노출 금지
+  api-secret: ${PORTONE_API_SECRET:}
+  # 웹훅 시크릿(whsec_...) — 포트원 콘솔 > 결제연동 > 웹훅에서 발급. 웹훅 서명(Standard Webhooks) 검증용
+  webhook-secret: ${PORTONE_WEBHOOK_SECRET:}
+  base-url: https://api.portone.io
+  # 상점 ID(공개값). 검증엔 불필요하나 참고용으로 보관. 실제 결제창 호출엔 프론트의 NEXT_PUBLIC_PORTONE_STORE_ID 사용
+  store-id: ${PORTONE_STORE_ID:}

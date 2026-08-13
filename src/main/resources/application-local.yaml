@@ -1,0 +1,18 @@
+# 로컬 개발 override.
+# 활성화: IntelliJ 실행 구성의 Active profiles 에 'local' (또는 환경변수 SPRING_PROFILES_ACTIVE=local)
+# 기본(application.yaml)은 운영값이므로, 로컬에서는 이 프로파일을 켜야 한다.
+
+server:
+  servlet:
+    session:
+      cookie:
+        same-site: lax     # 로컬은 same-site
+        secure: false      # 로컬 http 이므로 false
+
+app:
+  log:
+    dir: logs    # 로컬은 프로젝트 작업 디렉터리의 logs/ 에 저장
+  cookie:
+    domain: ""    # 로컬은 호스트 전용(.trendsaju.com 미적용)
+  frontend:
+    url: http://localhost:3000   # 로그인 성공 후 로컬 프론트로 리다이렉트

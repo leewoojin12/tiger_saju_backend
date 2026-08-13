@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lucky.member.mapper.MemberMapper">
+
+    <resultMap id="memberResultMap" type="com.lucky.member.domain.Member">
+        <id property="id" column="id"/>
+        <result property="kakaoId" column="kakao_id"/>
+        <result property="nickname" column="nickname"/>
+        <result property="role" column="role"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <select id="findByKakaoId" parameterType="long" resultMap="memberResultMap">
+        SELECT id, kakao_id, nickname, role, created_at, updated_at
+        FROM members
+        WHERE kakao_id = #{kakaoId}
+    </select>
+
+    <insert id="insert" parameterType="com.lucky.member.domain.Member"
+            useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO members (kakao_id, nickname, role, created_at, updated_at)
+        VALUES (#{kakaoId}, #{nickname}, #{role}, NOW(), NOW())
+    </insert>
+
+    <update id="updateNickname" parameterType="com.lucky.member.domain.Member">
+        UPDATE members
+        SET nickname = #{nickname}, updated_at = NOW()
+        WHERE kakao_id = #{kakaoId}
+    </update>
+
+</mapper>

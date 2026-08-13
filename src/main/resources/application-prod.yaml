@@ -1,0 +1,4 @@
+# 더 이상 사용하지 않음.
+# 운영값은 이제 기본(application.yaml)에 들어가 있어, 배포 시 별도 프로파일을 켤 필요가 없다.
+# 로컬 개발에서만 application-local.yaml 을 활성화한다(SPRING_PROFILES_ACTIVE=local).
+# 이 파일은 삭제해도 무방하다.

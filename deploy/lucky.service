@@ -1,0 +1,15 @@
+[Unit]
+Description=lucky Spring Boot backend
+After=network.target
+
+[Service]
+User=ubuntu
+# 운영 환경변수(DB/카카오/OpenAI)는 아래 파일에서 읽음. 기본 프로파일=운영이라 SPRING_PROFILES_ACTIVE 불필요.
+EnvironmentFile=/etc/lucky/lucky.env
+ExecStart=/usr/bin/java -jar /opt/lucky/app.jar
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

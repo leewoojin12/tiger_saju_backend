@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 로그 디렉터리: 운영 기본 /home/ubuntu/logs, 로컬은 application-local 에서 logs 로 override -->
+    <springProperty name="LOG_DIR" source="app.log.dir" defaultValue="logs"/>
+
+    <property name="PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n"/>
+
+    <!-- 콘솔(stdout) → systemd journald 로도 계속 남음 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 파일: 하루마다 yyyyMMdd 날짜 파일 생성 (당일 파일도 날짜 포함). 자정에 다음 날짜 파일로 롤오버 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/lucky-%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>          <!-- 30일치 보관 -->
+            <totalSizeCap>1GB</totalSizeCap>     <!-- 총 1GB 넘으면 오래된 것부터 삭제 -->
+        </rollingPolicy>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>

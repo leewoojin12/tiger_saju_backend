@@ -1,0 +1,24 @@
+package com.lucky.fortune.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+/**
+ * 생성 입력에 들어가는 '한 사람'. 백엔드가 사주 계산에 쓰는 구조화 필드.
+ *  - label    : "me" | "partner" 등 (프론트가 의미 부여, 백엔드는 그대로 보존)
+ *  - calendar : "양력" | "음력"
+ *  - leapMonth: 음력 윤달 여부 (양력이면 무시)
+ *  - birthDate: "yyyy-MM-dd". 음력이면 음력 연/월/일.
+ *  - birthTime/timeUnknown: v1 계산엔 미사용(시주 미구현), AI 컨텍스트로만 전달.
+ */
+public record Subject(
+        String label,
+        @NotBlank String name,
+        @NotBlank @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "생년월일은 yyyy-MM-dd 형식")
+        String birthDate,
+        @NotBlank String calendar,
+        boolean leapMonth,
+        String birthTime,
+        boolean timeUnknown
+) {
+}

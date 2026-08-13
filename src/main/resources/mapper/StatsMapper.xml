@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lucky.stats.mapper.StatsMapper">
+
+    <!-- ===== 매출·결제 ===== -->
+
+    <select id="paymentSummary" resultType="com.lucky.stats.dto.PaymentSummaryRow">
+        SELECT
+            COALESCE(SUM(amount) FILTER (WHERE status = 'PAID'), 0) AS total_revenue,
+            COUNT(*) FILTER (WHERE status = 'PAID')                 AS paid_count,
+            COUNT(*)                                                AS total_count
+        FROM payments
+    </select>
+
+    <select id="dailyRevenue" resultType="com.lucky.stats.dto.DailyPoint">
+        SELECT
+            to_char(date_trunc('day', paid_at AT TIME ZONE 'Asia/Seoul'), 'YYYY-MM-DD') AS date,
+            COALESCE(SUM(amount), 0) AS revenue,
+            COUNT(*)                 AS count
+        FROM payments
+        WHERE status = 'PAID' AND paid_at IS NOT NULL
+          AND paid_at >= now() - interval '30 days'
+        GROUP BY date
+        ORDER BY date
+    </select>
+
+    <select id="paymentStatusDistribution" resultType="com.lucky.stats.dto.LabelCount">
+        SELECT status AS label, COUNT(*) AS count
+        FROM payments
+        GROUP BY status
+        ORDER BY count DESC
+    </select>
+
+    <select id="payMethodDistribution" resultType="com.lucky.stats.dto.LabelCount">
+        SELECT COALESCE(pay_method, '기타') AS label, COUNT(*) AS count
+        FROM payments
+        WHERE status = 'PAID'
+        GROUP BY pay_method
+        ORDER BY count DESC
+    </select>
+
+    <select id="contentSales" resultType="com.lucky.stats.dto.ContentSale">
+        SELECT
+            p.product_code            AS slug,
+            f.title                   AS title,
+            COALESCE(SUM(p.amount), 0) AS revenue,
+            COUNT(*)                  AS count
+        FROM payments p
+        LEFT JOIN fortunes f ON f.slug = p.product_code
+        WHERE p.status = 'PAID'
+        GROUP BY p.product_code, f.title
+        ORDER BY revenue DESC
+    </select>
+
+    <!-- ===== 콘텐츠 ===== -->
+
+    <select id="contentGeneration" resultType="com.lucky.stats.dto.LabelCount">
+        SELECT COALESCE(f.title, r.slug) AS label, COUNT(*) AS count
+        FROM fortune_results r
+        LEFT JOIN fortunes f ON f.slug = r.slug
+        GROUP BY r.slug, f.title
+        ORDER BY count DESC
+        LIMIT 8
+    </select>
+
+    <select id="categoryStats" resultType="com.lucky.stats.dto.CategoryStat">
+        SELECT
+            c.category               AS category,
+            COALESCE(rev.revenue, 0) AS revenue,
+            COALESCE(gen.gen_count, 0) AS gen_count
+        FROM (SELECT DISTINCT category FROM fortunes) c
+        LEFT JOIN (
+            SELECT fo.category, SUM(p.amount) AS revenue
+            FROM payments p JOIN fortunes fo ON fo.slug = p.product_code
+            WHERE p.status = 'PAID'
+            GROUP BY fo.category
+        ) rev ON rev.category = c.category
+        LEFT JOIN (
+            SELECT fo.category, COUNT(*) AS gen_count
+            FROM fortune_results r JOIN fortunes fo ON fo.slug = r.slug
+            GROUP BY fo.category
+        ) gen ON gen.category = c.category
+        ORDER BY revenue DESC
+    </select>
+
+    <select id="generationStatus" resultType="com.lucky.stats.dto.LabelCount">
+        SELECT status AS label, COUNT(*) AS count
+        FROM fortune_results
+        GROUP BY status
+        ORDER BY count DESC
+    </select>
+
+    <select id="contentConversion" resultType="com.lucky.stats.dto.ContentConversion">
+        SELECT
+            f.slug                  AS slug,
+            f.title                 AS title,
+            COALESCE(pd.paid, 0)    AS paid_count,
+            COALESCE(dn.done, 0)    AS done_count
+        FROM fortunes f
+        LEFT JOIN (
+            SELECT product_code AS slug, COUNT(*) AS paid
+            FROM payments WHERE status = 'PAID' GROUP BY product_code
+        ) pd ON pd.slug = f.slug
+        LEFT JOIN (
+            SELECT slug, COUNT(*) AS done
+            FROM fortune_results WHERE status = 'DONE' GROUP BY slug
+        ) dn ON dn.slug = f.slug
+        WHERE COALESCE(pd.paid, 0) > 0
+        ORDER BY (COALESCE(dn.done, 0)::float / NULLIF(pd.paid, 0)) DESC NULLS LAST
+    </select>
+
+    <!-- ===== 사용자 / 퍼널 ===== -->
+
+    <select id="memberCount" resultType="long">
+        SELECT COUNT(*) FROM members
+    </select>
+
+    <select id="funnel" resultType="com.lucky.stats.dto.FunnelRow">
+        SELECT
+            (SELECT COUNT(*) FROM members) AS total_members,
+            (SELECT COUNT(DISTINCT member_id) FROM payments WHERE status = 'PAID') AS paying_members,
+            (SELECT COUNT(*) FROM (
+                SELECT member_id FROM payments WHERE status = 'PAID'
+                GROUP BY member_id HAVING COUNT(*) >= 2
+            ) t) AS repurchase_members,
+            (SELECT COUNT(DISTINCT member_id) FROM saju_history) AS free_saju_users,
+            (SELECT COUNT(DISTINCT s.member_id) FROM saju_history s
+                WHERE EXISTS (SELECT 1 FROM payments p
+                              WHERE p.member_id = s.member_id AND p.status = 'PAID')) AS free_saju_paid
+    </select>
+
+    <select id="dailySignups" resultType="com.lucky.stats.dto.CountPoint">
+        SELECT
+            to_char(date_trunc('day', created_at AT TIME ZONE 'Asia/Seoul'), 'YYYY-MM-DD') AS date,
+            COUNT(*) AS count
+        FROM members
+        WHERE created_at >= now() - interval '30 days'
+        GROUP BY date
+        ORDER BY date
+    </select>
+
+    <select id="roleDistribution" resultType="com.lucky.stats.dto.LabelCount">
+        SELECT
+            CASE WHEN role = 'ROLE_ADMIN' THEN '관리자' ELSE '일반' END AS label,
+            COUNT(*) AS count
+        FROM members
+        GROUP BY (role = 'ROLE_ADMIN')
+        ORDER BY count DESC
+    </select>
+
+    <!-- ===== 사주 보관함 ===== -->
+
+    <select id="dailySaju" resultType="com.lucky.stats.dto.CountPoint">
+        SELECT
+            to_char(date_trunc('day', created_at AT TIME ZONE 'Asia/Seoul'), 'YYYY-MM-DD') AS date,
+            COUNT(*) AS count
+        FROM saju_history
+        WHERE created_at >= now() - interval '30 days'
+        GROUP BY date
+        ORDER BY date
+    </select>
+
+    <select id="genderDistribution" resultType="com.lucky.stats.dto.LabelCount">
+        SELECT COALESCE(NULLIF(gender, ''), '미상') AS label, COUNT(*) AS count
+        FROM saju_history
+        GROUP BY COALESCE(NULLIF(gender, ''), '미상')
+        ORDER BY count DESC
+    </select>
+
+    <select id="calendarDistribution" resultType="com.lucky.stats.dto.LabelCount">
+        SELECT COALESCE(NULLIF(calendar, ''), '미상') AS label, COUNT(*) AS count
+        FROM saju_history
+        GROUP BY COALESCE(NULLIF(calendar, ''), '미상')
+        ORDER BY count DESC
+    </select>
+
+    <select id="timeDistribution" resultType="com.lucky.stats.dto.LabelCount">
+        SELECT
+            CASE WHEN time_unknown THEN '시간모름' ELSE '시간입력' END AS label,
+            COUNT(*) AS count
+        FROM saju_history
+        GROUP BY time_unknown
+        ORDER BY count DESC
+    </select>
+
+</mapper>

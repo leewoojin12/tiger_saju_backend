@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lucky.saju.mapper.SajuHistoryMapper">
+
+    <resultMap id="sajuHistoryResultMap" type="com.lucky.saju.domain.SajuHistory">
+        <id property="id" column="id"/>
+        <result property="memberId" column="member_id"/>
+        <result property="username" column="username"/>
+        <result property="name" column="name"/>
+        <result property="gender" column="gender"/>
+        <result property="calendar" column="calendar"/>
+        <result property="birthDate" column="birth_date"/>
+        <result property="birthTime" column="birth_time"/>
+        <result property="timeUnknown" column="time_unknown"/>
+        <result property="iljuName" column="ilju_name"/>
+        <result property="summary" column="summary"/>
+        <result property="resultJson" column="result_json"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.lucky.saju.domain.SajuHistory"
+            useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO saju_history
+            (member_id, username, name, gender, calendar, birth_date, birth_time,
+             time_unknown, ilju_name, summary, result_json, created_at)
+        VALUES
+            (#{memberId}, #{username}, #{name}, #{gender}, #{calendar}, #{birthDate}, #{birthTime},
+             #{timeUnknown}, #{iljuName}, #{summary}, #{resultJson}, NOW())
+    </insert>
+
+    <!-- 목록: 무거운 result_json 은 제외하고 미리보기 컬럼만 -->
+    <select id="findByMemberId" resultMap="sajuHistoryResultMap">
+        SELECT id, name, ilju_name, summary, created_at
+        FROM saju_history
+        WHERE member_id = #{memberId}
+        ORDER BY created_at DESC, id DESC
+    </select>
+
+    <!-- 상세: 전체 컬럼. 본인 소유만 -->
+    <select id="findByIdAndMemberId" resultMap="sajuHistoryResultMap">
+        SELECT id, member_id, username, name, gender, calendar, birth_date, birth_time,
+               time_unknown, ilju_name, summary, result_json, created_at
+        FROM saju_history
+        WHERE id = #{id} AND member_id = #{memberId}
+    </select>
+
+</mapper>

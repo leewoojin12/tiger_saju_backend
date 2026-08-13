@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lucky.fortune.mapper.FortuneResultMapper">
+
+    <insert id="insertGenerating" parameterType="com.lucky.fortune.domain.FortuneResult"
+            useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO fortune_results
+            (member_id, slug, payment_id, name, status, input_json)
+        VALUES
+            (#{memberId}, #{slug}, #{paymentId}, #{name}, #{status}, #{inputJson})
+        ON CONFLICT (payment_id) DO NOTHING
+    </insert>
+
+    <update id="markDone">
+        UPDATE fortune_results
+        SET result_json = #{resultJson}, status = 'DONE', error = NULL
+        WHERE id = #{id}
+    </update>
+
+    <update id="markFailed">
+        UPDATE fortune_results
+        SET status = 'FAILED', error = #{error}
+        WHERE id = #{id}
+    </update>
+
+    <update id="markGenerating">
+        UPDATE fortune_results
+        SET status = 'GENERATING', error = NULL
+        WHERE id = #{id}
+    </update>
+
+    <select id="findById" resultType="com.lucky.fortune.domain.FortuneResult">
+        SELECT id, member_id, slug, payment_id, name, result_json, status, error, input_json, created_at
+        FROM fortune_results
+        WHERE id = #{id}
+    </select>
+
+    <select id="findByPaymentId" resultType="com.lucky.fortune.domain.FortuneResult">
+        SELECT id, member_id, slug, payment_id, name, result_json, status, error, input_json, created_at
+        FROM fortune_results
+        WHERE payment_id = #{paymentId}
+    </select>
+
+    <select id="findSummariesByMemberId" resultType="com.lucky.fortune.dto.MyResultSummary">
+        SELECT r.id, r.slug, f.title AS title, r.name, r.status, r.created_at
+        FROM fortune_results r
+        LEFT JOIN fortunes f ON f.slug = r.slug
+        WHERE r.member_id = #{memberId}
+        ORDER BY r.created_at DESC
+    </select>
+
+    <select id="findByIdAndMemberId" resultType="com.lucky.fortune.domain.FortuneResult">
+        SELECT id, member_id, slug, payment_id, name, result_json, status, error, input_json, created_at
+        FROM fortune_results
+        WHERE id = #{id} AND member_id = #{memberId}
+    </select>
+
+</mapper>
