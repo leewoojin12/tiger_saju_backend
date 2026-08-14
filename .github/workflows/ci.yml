@@ -3,7 +3,7 @@ name: CI
 # main 푸시 + 모든 PR에서 빌드 검증
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
 
 jobs:
