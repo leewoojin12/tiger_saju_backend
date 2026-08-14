@@ -71,6 +71,7 @@ openai:
   max-completion-tokens: 1200
   timeout-seconds: 120
 
+
 portone:
   # V2 API Secret — 서버 전용 비밀. 포트원 콘솔 > 결제연동 > V2 API Secret 발급. 절대 프론트/깃에 노출 금지
   api-secret: ${PORTONE_API_SECRET:}
