@@ -3,7 +3,7 @@ name: Deploy to EC2
 # main 푸시 시 자동 배포 (수동 실행도 가능)
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
