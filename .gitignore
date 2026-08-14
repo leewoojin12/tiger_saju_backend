@@ -39,3 +39,7 @@ out/
 ### 환경변수 (시크릿) — 커밋 금지 ###
 .env
 
+
+logs/
+*.log
+hs_err_pid*.log
