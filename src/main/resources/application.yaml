@@ -62,7 +62,7 @@ app:
   frontend:
     url: https://tiger-saju.vercel.app   # 기본=운영(호랑이풍수). 로컬은 local 프로파일에서 override
   cors:
-    allowed-origins: https://tiger-saju.vercel.app,http://localhost:3000  # CORS 허용 출처(배포 프론트 + 로컬 개발). 콤마 사이 공백 X, 끝에 슬래시 X
+    allowed-origins: https://tiger-saju.vercel.app,http://localhost:3000,https://www.tigersaju.com/  # CORS 허용 출처(배포 프론트 + 로컬 개발). 콤마 사이 공백 X, 끝에 슬래시 X
 
 openai:
   api-key: ${OPEN_AI_KEY}
