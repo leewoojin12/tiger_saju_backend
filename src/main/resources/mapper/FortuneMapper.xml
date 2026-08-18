@@ -5,7 +5,7 @@
 
     <!-- 목록: 카탈로그 표시용 컬럼만 (프롬프트 제외) -->
     <select id="findAllActive" resultType="com.lucky.fortune.domain.Fortune">
-        SELECT id, slug, title, description, duration_text, price, active, category, created_at
+        SELECT id, slug, title, description, duration_text, price, active, category, created_at, ui_config
         FROM fortunes
         WHERE active = true
         ORDER BY id
@@ -14,7 +14,7 @@
     <!-- 인기 탑5: 완료된 풀 리포트 수 많은 순(없는 것도 포함, 0건은 뒤로). 프롬프트 제외 -->
     <select id="findPopularActive" resultType="com.lucky.fortune.domain.Fortune">
         SELECT f.id, f.slug, f.title, f.description, f.duration_text, f.price, f.active,
-               f.category, f.created_at
+               f.category, f.created_at, f.ui_config
         FROM fortunes f
         LEFT JOIN fortune_results r ON r.slug = f.slug AND r.status = 'DONE'
         WHERE f.active = true
