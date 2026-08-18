@@ -60,9 +60,9 @@ app:
   cookie:
     domain: trendsaju.com   # CSRF 쿠키를 상위 도메인으로 → www/api 서브도메인 공유. 앞에 점(.) 붙이면 톰캣 RFC6265가 invalid로 거부하니 점 없이! 점 없어도 서브도메인 다 커버됨. 로컬은 application-local에서 빈 값
   frontend:
-    url: https://www.trendsaju.com   # 기본=운영. 로컬은 local 프로파일에서 override
+    url: https://tiger-saju.vercel.app   # 기본=운영(호랑이풍수). 로컬은 local 프로파일에서 override
   cors:
-    allowed-origins: https://saju-chi-tawny.vercel.app,http://localhost:3000,https://www.trendsaju.com  # CORS 허용 출처(배포 프론트 + 로컬 개발). 콤마 사이 공백 X, 끝에 슬래시 X
+    allowed-origins: https://tiger-saju.vercel.app,http://localhost:3000  # CORS 허용 출처(배포 프론트 + 로컬 개발). 콤마 사이 공백 X, 끝에 슬래시 X
 
 openai:
   api-key: ${OPEN_AI_KEY}
