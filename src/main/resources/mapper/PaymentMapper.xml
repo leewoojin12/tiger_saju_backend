@@ -15,6 +15,7 @@
         <result property="status" column="status"/>
         <result property="pgTxId" column="pg_tx_id"/>
         <result property="rawJson" column="raw_json"/>
+        <result property="inputJson" column="input_json"/>
         <result property="paidAt" column="paid_at"/>
         <result property="createdAt" column="created_at"/>
         <result property="updatedAt" column="updated_at"/>
@@ -51,5 +52,18 @@
             updated_at = NOW()
         WHERE payment_id = #{paymentId}
     </update>
+
+    <!--
+      결제는 됐는데(PAID) 리포트 행이 없는 결제건.
+      결제 직후 브라우저를 닫는 등으로 생성 요청이 유실된 경우를 보관함에서 복구하기 위한 조회.
+    -->
+    <select id="findUnfulfilledByMember" resultMap="paymentResultMap">
+        SELECT p.* FROM payments p
+        LEFT JOIN fortune_results r ON r.payment_id = p.payment_id
+        WHERE p.member_id = #{memberId}
+          AND p.status = 'PAID'
+          AND r.id IS NULL
+        ORDER BY p.paid_at DESC NULLS LAST, p.id DESC
+    </select>
 
 </mapper>

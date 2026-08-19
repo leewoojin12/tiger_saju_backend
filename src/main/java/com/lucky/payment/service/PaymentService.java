@@ -9,9 +9,11 @@ import com.lucky.payment.domain.Payment;
 import com.lucky.payment.dto.PaymentResult;
 import com.lucky.payment.dto.PreparePaymentRequest;
 import com.lucky.payment.dto.PreparePaymentResponse;
+import com.lucky.payment.dto.UnfulfilledPayment;
 import com.lucky.payment.mapper.PaymentMapper;
 import com.lucky.payment.webhook.PortOneWebhookVerifier;
 import com.lucky.payment.webhook.WebhookPayload;
+import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +45,14 @@ public class PaymentService {
     public PreparePaymentResponse prepare(Long memberId, PreparePaymentRequest req) {
         Fortune fortune = fortuneService.getActiveEntity(req.slug());  // 없거나 비활성이면 404
         String paymentId = "saju_" + UUID.randomUUID().toString().replace("-", "");
+        String inputJson = null;
+        if (req.input() != null) {
+            try {
+                inputJson = JSON.writeValueAsString(req.input());
+            } catch (Exception e) {
+                log.warn("[결제 준비] 입력 스냅샷 직렬화 실패 slug={}", req.slug(), e);
+            }
+        }
         Payment payment = Payment.builder()
                 .paymentId(paymentId)
                 .memberId(memberId)
@@ -51,9 +61,37 @@ public class PaymentService {
                 .amount(fortune.getPrice())
                 .currency("KRW")
                 .status("PENDING")
+                .inputJson(inputJson)
                 .build();
         paymentMapper.insert(payment);
         return new PreparePaymentResponse(paymentId, fortune.getTitle(), fortune.getPrice(), "KRW", props.storeId());
+    }
+
+    /** 결제 완료됐지만 리포트가 없는 결제건(보관함 복구 안내용). */
+    public List<UnfulfilledPayment> listUnfulfilled(Long memberId) {
+        return paymentMapper.findUnfulfilledByMember(memberId).stream()
+                .map(p -> new UnfulfilledPayment(
+                        p.getPaymentId(), p.getProductCode(), p.getOrderName(),
+                        p.getAmount(), p.getPaidAt(),
+                        p.getInputJson() != null && !p.getInputJson().isBlank()))
+                .toList();
+    }
+
+    /** 복구 생성에 쓸 결제건(본인·PAID·입력 보관 확인). */
+    public Payment requireResumable(Long memberId, String paymentId) {
+        Payment p = paymentMapper.findByPaymentId(paymentId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "결제 정보를 찾을 수 없습니다."));
+        if (p.getMemberId() == null || !p.getMemberId().equals(memberId)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "본인 결제건이 아닙니다.");
+        }
+        if (!"PAID".equals(p.getStatus())) {
+            throw new ResponseStatusException(HttpStatus.PAYMENT_REQUIRED, "결제가 완료되지 않았습니다.");
+        }
+        if (p.getInputJson() == null || p.getInputJson().isBlank()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "저장된 입력이 없어 자동으로 만들 수 없어요. 고객센터로 문의해 주세요.");
+        }
+        return p;
     }
 
     /**

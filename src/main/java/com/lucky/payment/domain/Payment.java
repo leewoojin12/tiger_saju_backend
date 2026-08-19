@@ -26,6 +26,9 @@ public class Payment {
     private String status;        // PENDING/PAID/FAILED/CANCELLED/...
     private String pgTxId;
     private String rawJson;
+
+    /** 결제 준비 시 저장한 사용자 입력(JSON). 미수령 결제 복구 생성에 사용. */
+    private String inputJson;
     private OffsetDateTime paidAt;
     private OffsetDateTime createdAt;
     private OffsetDateTime updatedAt;

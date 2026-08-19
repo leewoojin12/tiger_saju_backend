@@ -110,3 +110,7 @@ ALTER TABLE fortune_results ADD COLUMN IF NOT EXISTS status     TEXT NOT NULL DE
 ALTER TABLE fortune_results ADD COLUMN IF NOT EXISTS error      TEXT;
 ALTER TABLE fortune_results ADD COLUMN IF NOT EXISTS input_json TEXT;
 ALTER TABLE fortune_results ALTER COLUMN result_json DROP NOT NULL;
+
+-- 결제 준비 시 사용자의 입력(subjects/answers) 스냅샷.
+-- 결제 후 브라우저를 닫아도 서버가 리포트를 만들어 줄 수 있게 한다(미수령 결제 복구).
+ALTER TABLE payments ADD COLUMN IF NOT EXISTS input_json TEXT;
