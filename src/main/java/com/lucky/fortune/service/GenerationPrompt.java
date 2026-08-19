@@ -36,6 +36,22 @@ final class GenerationPrompt {
             req.answers().forEach((k, v) -> sb.append("- ").append(k).append(": ").append(v).append('\n'));
         }
 
+        // 미입력 항목을 명시 → AI 가 "질문하신 대로" 처럼 없는 입력을 있다고 쓰지 않도록.
+        boolean hasQuestion = req.answers() != null
+                && req.answers().keySet().stream().anyMatch(k -> k.toLowerCase().contains("question"));
+        if (!hasQuestion) {
+            sb.append("\n[미입력] 이번 의뢰인은 개별 질문을 남기지 않았다.")
+              .append(" '질문하신', '문의하신' 같은 표현을 쓰지 말고, 질문이 있었던 것처럼 답하지 말 것.")
+              .append(" 질문 답변에 해당하는 장은 이 사주에서 가장 도움이 될 조언으로 대신하라.\n");
+        }
+
+        // 호칭 규칙 → "사용자님" 같은 일반 호칭 대신 실제 이름을 쓰게 한다.
+        String mainName = req.subjects().isEmpty() ? null : req.subjects().get(0).name();
+        if (mainName != null && !mainName.isBlank()) {
+            sb.append("\n[호칭] 의뢰인을 부를 때는 반드시 \"").append(mainName).append("님\" 으로 쓴다.")
+              .append(" '사용자님', '고객님', '의뢰인님' 같은 표현은 사용하지 말 것.\n");
+        }
+
         sb.append("\n[계산된 사실 — 아래 값은 이미 정확히 계산되었다. 숫자·일주를 절대 바꾸지 말고 이 값을 근거로 해석만 하라]\n");
         sb.append(facts.toString()).append('\n');
 
