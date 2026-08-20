@@ -15,6 +15,8 @@ public record FortunePublic(
         String durationText,
         long price,
         String category,
+        /** 노출 순서(낮을수록 앞). 비어 있으면 null — 목록은 이미 이 순서로 정렬돼 온다. */
+        Integer sortOrder,
         OffsetDateTime createdAt,
         String uiConfig
 ) {
@@ -26,6 +28,7 @@ public record FortunePublic(
                 f.getDurationText(),
                 f.getPrice(),
                 f.getCategory(),
+                f.getSortOrder(),
                 f.getCreatedAt(),
                 f.getUiConfig()
         );

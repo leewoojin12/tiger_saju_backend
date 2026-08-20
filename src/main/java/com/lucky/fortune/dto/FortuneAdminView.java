@@ -15,6 +15,8 @@ public record FortuneAdminView(
         long price,
         boolean active,
         String category,
+        /** 노출 순서(낮을수록 앞). 비우면 null → 등록순. */
+        Integer sortOrder,
         String teaserPrompt,
         String fullPrompt,
         String uiConfig
@@ -22,8 +24,8 @@ public record FortuneAdminView(
     public static FortuneAdminView from(Fortune f) {
         return new FortuneAdminView(
                 f.getId(), f.getSlug(), f.getTitle(), f.getDescription(), f.getDurationText(),
-                f.getPrice(), f.isActive(), f.getCategory(), f.getTeaserPrompt(), f.getFullPrompt(),
-                f.getUiConfig()
+                f.getPrice(), f.isActive(), f.getCategory(), f.getSortOrder(),
+                f.getTeaserPrompt(), f.getFullPrompt(), f.getUiConfig()
         );
     }
 }

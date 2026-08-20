@@ -18,6 +18,8 @@ public class Fortune {
     private long price;           // 원
     private boolean active;       // 노출 on/off
     private String category;      // 메인 탭 분류 (연애/재회/결혼/가정/기타)
+    /** 노출 순서. 낮은 숫자가 앞. NULL 이면 등록순(id)으로 뒤에 붙는다. */
+    private Integer sortOrder;
     private OffsetDateTime createdAt;  // 등록일 (NEW 뱃지: 7일 이내)
 
     private String teaserPrompt;  // 무료 맛보기용 (서버 전용)
@@ -91,6 +93,14 @@ public class Fortune {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Integer getSortOrder() {
+        return sortOrder;
+    }
+
+    public void setSortOrder(Integer sortOrder) {
+        this.sortOrder = sortOrder;
     }
 
     public OffsetDateTime getCreatedAt() {

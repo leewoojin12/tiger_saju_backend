@@ -16,6 +16,8 @@ public record FortuneUpsertRequest(
         @Positive(message = "가격은 1원 이상이어야 합니다. 0원 상품은 결제가 불가능해요(PG사 제한).") long price,
         boolean active,
         String category,
+        /** 노출 순서(낮을수록 앞). 비우면(null) 등록순으로 뒤에 붙는다. */
+        Integer sortOrder,
         String teaserPrompt,
         String fullPrompt,
         String uiConfig

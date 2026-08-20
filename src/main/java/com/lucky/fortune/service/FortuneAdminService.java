@@ -77,6 +77,7 @@ public class FortuneAdminService {
         f.setActive(req.active());
         // 카테고리 미지정 시 '기타' 기본값(컬럼 DEFAULT 와 일치).
         f.setCategory(req.category() == null || req.category().isBlank() ? "기타" : req.category());
+        f.setSortOrder(req.sortOrder());
         f.setTeaserPrompt(req.teaserPrompt());
         f.setFullPrompt(req.fullPrompt());
         f.setUiConfig(req.uiConfig());
