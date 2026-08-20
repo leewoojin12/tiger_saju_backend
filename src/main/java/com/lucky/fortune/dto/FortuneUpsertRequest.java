@@ -1,7 +1,7 @@
 package com.lucky.fortune.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Positive;
 
 /**
  * 관리자: 운세 생성/수정 입력.
@@ -13,7 +13,7 @@ public record FortuneUpsertRequest(
         @NotBlank String title,
         String description,
         String durationText,
-        @PositiveOrZero long price,
+        @Positive(message = "가격은 1원 이상이어야 합니다. 0원 상품은 결제가 불가능해요(PG사 제한).") long price,
         boolean active,
         String category,
         String teaserPrompt,

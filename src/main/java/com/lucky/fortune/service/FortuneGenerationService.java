@@ -39,6 +39,12 @@ public class FortuneGenerationService {
     /** 풀 리포트는 길게(15개 풀이 본문, 풀이당 500자+). 풀이당 길이를 늘리면 이 값도 올려야 잘림(JSON 깨짐) 방지. */
     private static final int FULL_MAX_TOKENS = 18000;
 
+    /**
+     * 생성 시도 한도(최초 1회 + 재시도 2회). 여기에 도달하면 더 이상 재시도를 받지 않고
+     * 결제 금액을 자동으로 환불한다 — 돈은 받았는데 리포트는 못 주는 상태를 남기지 않기 위함.
+     */
+    static final int MAX_ATTEMPTS = 3;
+
     private final FortuneService fortuneService;
     private final LlmClient llmClient;
     private final PaymentService paymentService;
@@ -109,8 +115,18 @@ public class FortuneGenerationService {
         FortuneResult row = fortuneResultMapper.findByIdAndMemberId(id, memberId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "결과를 찾을 수 없습니다."));
+        if (FortuneResultService.isRevoked(row.getPaymentStatus())) {
+            throw new ResponseStatusException(HttpStatus.PAYMENT_REQUIRED,
+                    "환불이 완료된 결제건이라 다시 만들 수 없어요.");
+        }
         if (!"FAILED".equals(row.getStatus())) {
             return new EnqueueResponse(id, row.getStatus());   // 이미 완료/진행중 → 그대로
+        }
+        if (row.getAttempts() >= MAX_ATTEMPTS) {
+            // 한도 도달분은 이미 자동 환불 처리됨 → 무한 재시도로 AI 비용이 새는 것을 막는다.
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "여러 번 시도했지만 만들지 못했어요. 결제 금액은 환불 처리되며, "
+                            + "불편을 드려 죄송합니다. 고객센터로 문의해 주세요.");
         }
         if (row.getInputJson() == null) {
             throw new ResponseStatusException(HttpStatus.CONFLICT,
@@ -153,11 +169,56 @@ public class FortuneGenerationService {
             log.info("풀 리포트 생성 완료 id={}", resultId);
         } catch (Exception e) {
             log.warn("풀 리포트 생성 실패 id={}", resultId, e);
+            int attempt = row.getAttempts() + 1;   // markFailed 가 올릴 값
             String msg = (e instanceof ResponseStatusException rse && rse.getReason() != null)
                     ? rse.getReason()
                     : "생성 중 오류가 발생했습니다. 다시 시도해 주세요.";
+            if (attempt >= MAX_ATTEMPTS) {
+                msg = finalizeWithRefund(row, attempt);
+            }
             fortuneResultMapper.markFailed(resultId, msg);
         }
+    }
+
+    /**
+     * 시도 한도에 도달한 실패 건: 결제 금액을 자동 환불하고 사용자에게 보여줄 안내 문구를 만든다.
+     *
+     * <p>환불에 실패해도 예외를 밖으로 던지지 않는다 — 워커 스레드라 받아줄 곳이 없고,
+     * 최소한 FAILED 마감은 반드시 되어야 하기 때문. 이 경우 로그로 남겨 수동 처리한다.
+     */
+    private String finalizeWithRefund(FortuneResult row, int attempt) {
+        try {
+            boolean refunded = paymentService.refund(
+                    row.getPaymentId(), "리포트 생성 " + attempt + "회 실패에 따른 자동 환불");
+            if (refunded) {
+                return "여러 번 시도했지만 리포트를 만들지 못했어요. 결제하신 금액은 자동으로 환불 처리했습니다. "
+                        + "불편을 드려 죄송합니다.";
+            }
+            return "여러 번 시도했지만 리포트를 만들지 못했어요. 고객센터로 문의해 주시면 바로 도와드릴게요.";
+        } catch (Exception e) {
+            log.error("[자동 환불 실패] 수동 처리 필요 resultId={} paymentId={}",
+                    row.getId(), row.getPaymentId(), e);
+            return "여러 번 시도했지만 리포트를 만들지 못했어요. 환불 처리를 위해 고객센터로 문의해 주세요.";
+        }
+    }
+
+    /**
+     * 좀비 정리: 배포/장애로 워커가 죽어 GENERATING 인 채 방치된 행을 FAILED 로 마감한다.
+     * 그래야 사용자가 무한 로딩에 갇히지 않고 재시도 버튼을 볼 수 있다.
+     * 한도에 도달했다면 여기서도 자동 환불이 걸린다.
+     */
+    public int failStuckGenerating(java.time.OffsetDateTime before) {
+        var stuck = fortuneResultMapper.findStuckGenerating(before);
+        for (FortuneResult row : stuck) {
+            int attempt = row.getAttempts() + 1;
+            String msg = "생성이 중간에 멈췄어요. 다시 시도해 주세요.";
+            if (attempt >= MAX_ATTEMPTS) {
+                msg = finalizeWithRefund(row, attempt);
+            }
+            fortuneResultMapper.markFailed(row.getId(), msg);
+            log.warn("[좀비 정리] GENERATING → FAILED id={} startedAt={}", row.getId(), row.getStartedAt());
+        }
+        return stuck.size();
     }
 
     /** 재시도용 입력 직렬화: {"input":GenerateRequest, "intro":..}. */

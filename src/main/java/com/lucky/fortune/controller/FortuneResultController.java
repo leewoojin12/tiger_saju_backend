@@ -10,10 +10,12 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -58,6 +60,17 @@ public class FortuneResultController {
     public EnqueueResponse retry(@PathVariable Long id,
                                  @AuthenticationPrincipal OAuth2User principal) {
         return generationService.retry(id, currentMemberId(principal));
+    }
+
+    /**
+     * 보관함에서 리포트 지우기. 본인 것만.
+     * 결제 이력은 그대로 남고 리포트만 목록·상세에서 사라진다(소프트 삭제).
+     */
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id,
+                       @AuthenticationPrincipal OAuth2User principal) {
+        resultService.deleteMine(id, currentMemberId(principal));
     }
 
     private Long currentMemberId(OAuth2User principal) {

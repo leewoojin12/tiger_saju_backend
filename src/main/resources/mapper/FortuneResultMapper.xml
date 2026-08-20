@@ -3,12 +3,23 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lucky.fortune.mapper.FortuneResultMapper">
 
+    <!--
+      soft delete 규칙
+        - 사용자 화면(목록/상세/재시도) 조회에는 deleted_at IS NULL 을 붙인다.
+        - 내부 조회(findById=워커, findByPaymentId=멱등 판정)에는 붙이지 않는다.
+          붙이면 지운 리포트를 결제 없이 재생성할 수 있게 되어 구멍이 생긴다.
+    -->
+    <sql id="cols">
+        id, member_id, slug, payment_id, name, result_json, status, error, input_json,
+        attempts, failed_at, started_at, deleted_at, created_at
+    </sql>
+
     <insert id="insertGenerating" parameterType="com.lucky.fortune.domain.FortuneResult"
             useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         INSERT INTO fortune_results
-            (member_id, slug, payment_id, name, status, input_json)
+            (member_id, slug, payment_id, name, status, input_json, attempts, started_at)
         VALUES
-            (#{memberId}, #{slug}, #{paymentId}, #{name}, #{status}, #{inputJson})
+            (#{memberId}, #{slug}, #{paymentId}, #{name}, #{status}, #{inputJson}, 0, now())
         ON CONFLICT (payment_id) DO NOTHING
     </insert>
 
@@ -18,42 +29,80 @@
         WHERE id = #{id}
     </update>
 
+    <!-- 실패할 때마다 시도 횟수를 올린다. 한도 도달 판단(자동 환불)에 쓰인다. -->
     <update id="markFailed">
         UPDATE fortune_results
-        SET status = 'FAILED', error = #{error}
+        SET status = 'FAILED', error = #{error}, attempts = attempts + 1, failed_at = now()
         WHERE id = #{id}
     </update>
 
     <update id="markGenerating">
         UPDATE fortune_results
-        SET status = 'GENERATING', error = NULL
+        SET status = 'GENERATING', error = NULL, started_at = now()
         WHERE id = #{id}
     </update>
 
+    <!-- 워커 전용(소유권·삭제 무관). -->
     <select id="findById" resultType="com.lucky.fortune.domain.FortuneResult">
-        SELECT id, member_id, slug, payment_id, name, result_json, status, error, input_json, created_at
+        SELECT <include refid="cols"/>
         FROM fortune_results
         WHERE id = #{id}
     </select>
 
+    <!-- 멱등 판정 전용. 삭제된 행도 반드시 보여야 한다(재생성 무료 우회 차단). -->
     <select id="findByPaymentId" resultType="com.lucky.fortune.domain.FortuneResult">
-        SELECT id, member_id, slug, payment_id, name, result_json, status, error, input_json, created_at
+        SELECT <include refid="cols"/>
         FROM fortune_results
         WHERE payment_id = #{paymentId}
     </select>
 
     <select id="findSummariesByMemberId" resultType="com.lucky.fortune.dto.MyResultSummary">
-        SELECT r.id, r.slug, f.title AS title, r.name, r.status, r.created_at
+        SELECT r.id, r.slug, f.title AS title, r.name, r.status, r.created_at,
+               p.status AS payment_status
         FROM fortune_results r
         LEFT JOIN fortunes f ON f.slug = r.slug
+        LEFT JOIN payments p ON p.payment_id = r.payment_id
         WHERE r.member_id = #{memberId}
+          AND r.deleted_at IS NULL
         ORDER BY r.created_at DESC
     </select>
 
+    <!-- 상세/재시도용. 결제 상태를 함께 실어 환불된 리포트를 서비스단에서 막을 수 있게 한다. -->
     <select id="findByIdAndMemberId" resultType="com.lucky.fortune.domain.FortuneResult">
-        SELECT id, member_id, slug, payment_id, name, result_json, status, error, input_json, created_at
+        SELECT r.id, r.member_id, r.slug, r.payment_id, r.name, r.result_json, r.status, r.error,
+               r.input_json, r.attempts, r.failed_at, r.deleted_at, r.created_at,
+               p.status AS payment_status
+        FROM fortune_results r
+        LEFT JOIN payments p ON p.payment_id = r.payment_id
+        WHERE r.id = #{id}
+          AND r.member_id = #{memberId}
+          AND r.deleted_at IS NULL
+    </select>
+
+    <!--
+      보관함에서 리포트 지우기(소프트 삭제).
+      member_id 조건을 UPDATE 안에 넣어 소유권 검사를 한 문장으로 처리한다(0건이면 서비스가 404).
+      결제 이력(payments)은 손대지 않는다.
+    -->
+    <update id="softDeleteByIdAndMemberId">
+        UPDATE fortune_results
+        SET deleted_at = now()
+        WHERE id = #{id}
+          AND member_id = #{memberId}
+          AND deleted_at IS NULL
+    </update>
+
+    <!--
+      좀비 정리용: GENERATING 인 채로 방치된 행(배포 중 JVM 종료 등으로 워커가 죽은 경우).
+      started_at(마지막으로 GENERATING 이 된 시각) 기준이라 재시도 중인 행을 오판하지 않는다.
+    -->
+    <select id="findStuckGenerating" resultType="com.lucky.fortune.domain.FortuneResult">
+        SELECT <include refid="cols"/>
         FROM fortune_results
-        WHERE id = #{id} AND member_id = #{memberId}
+        WHERE status = 'GENERATING'
+          AND COALESCE(started_at, created_at) &lt; #{before}
+        ORDER BY created_at
+        LIMIT 50
     </select>
 
 </mapper>

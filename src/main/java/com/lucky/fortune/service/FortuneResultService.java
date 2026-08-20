@@ -8,13 +8,14 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
 
 /**
  * 보관함: 결제 완료 후 저장된 풀 리포트 재조회.
- * 생성/저장은 {@link FortuneGenerationService#generateFull}이 담당하고, 여기선 읽기만.
+ * 생성/저장은 {@link FortuneGenerationService#enqueueFull}이 담당하고, 여기선 읽기·삭제만.
  */
 @Service
 @RequiredArgsConstructor
@@ -30,16 +31,31 @@ public class FortuneResultService {
     }
 
     /**
+     * 환불(취소)된 결제인지. payments.status 기준.
+     * PortOne 은 전액 취소를 CANCELLED, 부분 취소를 PARTIAL_CANCELLED 로 준다.
+     */
+    public static boolean isRevoked(String paymentStatus) {
+        return "CANCELLED".equals(paymentStatus) || "PARTIAL_CANCELLED".equals(paymentStatus);
+    }
+
+    /**
      * 보관함 상세(폴링 대응). status 봉투로 반환:
      *  - DONE       → result(본문 JSON) 채움
      *  - GENERATING → result/error 없음 (프론트: 작성 중… + 3초 폴링)
      *  - FAILED     → error 채움 (프론트: 재시도 버튼)
-     * 본인 것만.
+     *  - REVOKED    → 환불된 결제건 → 본문을 내려주지 않음
+     * 본인 것 · 삭제되지 않은 것만.
      */
     public ResultDetailResponse getMine(Long id, Long memberId) {
         FortuneResult result = resultMapper.findByIdAndMemberId(id, memberId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "결과를 찾을 수 없습니다."));
+        // 환불된 결제의 리포트는 상태와 무관하게 본문을 내려주지 않는다.
+        // (읽는 시점에 판단하므로 웹훅이 늦게 와도 자동으로 맞아떨어진다)
+        if (isRevoked(result.getPaymentStatus())) {
+            return new ResultDetailResponse(id, "REVOKED", null,
+                    "환불이 완료된 리포트예요. 다시 보시려면 새로 신청해 주세요.", false);
+        }
         String status = result.getStatus();
         if ("DONE".equals(status)) {
             JsonNode tree;
@@ -49,11 +65,38 @@ public class FortuneResultService {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                         "저장된 결과를 읽을 수 없습니다.");
             }
-            return new ResultDetailResponse(id, "DONE", tree, null);
+            return new ResultDetailResponse(id, "DONE", tree, null, false);
         }
         if ("FAILED".equals(status)) {
-            return new ResultDetailResponse(id, "FAILED", null, result.getError());
+            // 시도 한도에 도달했으면 재시도 버튼을 숨긴다(이미 자동 환불된 건).
+            boolean retryable = result.getAttempts() < FortuneGenerationService.MAX_ATTEMPTS
+                    && result.getInputJson() != null;
+            return new ResultDetailResponse(id, "FAILED", null, result.getError(), retryable);
         }
-        return new ResultDetailResponse(id, "GENERATING", null, null);
+        return new ResultDetailResponse(id, "GENERATING", null, null, false);
+    }
+
+    /**
+     * 보관함에서 리포트 지우기(소프트 삭제). 본인 것만.
+     *
+     * <p>행을 실제로 지우지 않는 이유:
+     * <ul>
+     *   <li>하드 삭제하면 '결제했는데 리포트가 없는 건'으로 잡혀 미수령 결제 배너가 되살아난다.</li>
+     *   <li>payment_id 로 걸린 멱등 판정이 풀려 결제 없이 리포트를 다시 생성할 수 있게 된다.</li>
+     * </ul>
+     * 결제 이력(payments)은 어떤 경우에도 건드리지 않는다.
+     */
+    @Transactional
+    public void deleteMine(Long id, Long memberId) {
+        FortuneResult row = resultMapper.findByIdAndMemberId(id, memberId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "결과를 찾을 수 없습니다."));
+        if ("GENERATING".equals(row.getStatus())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "아직 작성 중인 리포트예요. 완료된 뒤에 삭제해 주세요.");
+        }
+        if (resultMapper.softDeleteByIdAndMemberId(id, memberId) == 0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "결과를 찾을 수 없습니다.");
+        }
     }
 }

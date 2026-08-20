@@ -19,5 +19,7 @@ public class MyResultSummary {
     private String title;   // fortunes.title (없으면 null)
     private String name;    // 대상 이름(첫 번째 subject)
     private String status;  // GENERATING / DONE / FAILED (목록 뱃지용)
+    /** 연결된 결제건 상태(payments.status). CANCELLED/PARTIAL_CANCELLED 면 환불된 리포트. */
+    private String paymentStatus;
     private OffsetDateTime createdAt;
 }

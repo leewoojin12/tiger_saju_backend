@@ -114,3 +114,22 @@ ALTER TABLE fortune_results ALTER COLUMN result_json DROP NOT NULL;
 -- 결제 준비 시 사용자의 입력(subjects/answers) 스냅샷.
 -- 결제 후 브라우저를 닫아도 서버가 리포트를 만들어 줄 수 있게 한다(미수령 결제 복구).
 ALTER TABLE payments ADD COLUMN IF NOT EXISTS input_json TEXT;
+
+-- 생성 실패 정책:
+--  - attempts  : 생성 시도 횟수(최초 1회 + 재시도). MAX_ATTEMPTS 도달 시 자동 환불 + 재시도 차단.
+--  - failed_at : 마지막 실패 시각(운영 추적용)
+--  - started_at: 생성이 시작된(=GENERATING 이 된) 시각. 배포/장애로 워커가 죽어 GENERATING 인 채
+--                방치된 좀비 행을 스케줄러가 골라내는 기준. created_at 을 쓰면 재시도 행이 오판된다.
+ALTER TABLE fortune_results ADD COLUMN IF NOT EXISTS attempts   INT NOT NULL DEFAULT 0;
+ALTER TABLE fortune_results ADD COLUMN IF NOT EXISTS failed_at  TIMESTAMPTZ;
+ALTER TABLE fortune_results ADD COLUMN IF NOT EXISTS started_at TIMESTAMPTZ;
+UPDATE fortune_results SET started_at = created_at WHERE started_at IS NULL;
+
+-- 보관함에서 사용자가 리포트를 지웠을 때(소프트 삭제). 결제 이력(payments)은 그대로 보존한다.
+-- 하드 삭제하면 (1)미수령 결제 배너가 되살아나고 (2)재결제 없이 재생성이 가능해지므로 반드시 소프트 삭제.
+ALTER TABLE fortune_results ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMPTZ;
+CREATE INDEX IF NOT EXISTS idx_fortune_results_member_alive
+    ON fortune_results (member_id, created_at DESC) WHERE deleted_at IS NULL;
+
+-- 운세 정렬 순서: 낮은 숫자가 앞. NULL 이면 등록순(id)으로 뒤에 붙는다.
+ALTER TABLE fortunes ADD COLUMN IF NOT EXISTS sort_order INT;

@@ -24,9 +24,10 @@
     <insert id="insert" parameterType="com.lucky.payment.domain.Payment"
             useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         INSERT INTO payments
-            (payment_id, member_id, product_code, order_name, amount, currency, status)
+            (payment_id, member_id, product_code, order_name, amount, currency, status, input_json)
         VALUES
-            (#{paymentId}, #{memberId}, #{productCode}, #{orderName}, #{amount}, #{currency}, #{status})
+            (#{paymentId}, #{memberId}, #{productCode}, #{orderName}, #{amount}, #{currency}, #{status},
+             #{inputJson})
     </insert>
 
     <select id="findByPaymentId" resultMap="paymentResultMap">

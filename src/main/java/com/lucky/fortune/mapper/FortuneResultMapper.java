@@ -2,6 +2,7 @@ package com.lucky.fortune.mapper;
 
 import com.lucky.fortune.domain.FortuneResult;
 import com.lucky.fortune.dto.MyResultSummary;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.apache.ibatis.annotations.Mapper;
@@ -31,7 +32,16 @@ public interface FortuneResultMapper {
     /** 보관함 목록 (본인 것, 최신순). 본문 제외 요약만. */
     List<MyResultSummary> findSummariesByMemberId(@Param("memberId") Long memberId);
 
-    /** 보관함 상세 (본인 것만). 소유권 검증 겸용. */
+    /**
+     * 보관함 상세 (본인 것 · 삭제되지 않은 것만). 소유권 검증 겸용.
+     * payments 를 조인해 {@code paymentStatus} 를 함께 채운다(환불 리포트 열람 차단용).
+     */
     Optional<FortuneResult> findByIdAndMemberId(@Param("id") Long id,
                                                 @Param("memberId") Long memberId);
+
+    /** 보관함에서 리포트 지우기(소프트 삭제). 본인 것만. 반영된 행 수(0이면 없음/이미 삭제). */
+    int softDeleteByIdAndMemberId(@Param("id") Long id, @Param("memberId") Long memberId);
+
+    /** GENERATING 인 채 방치된(=워커가 죽은) 행. before 이전에 시작된 것만. */
+    List<FortuneResult> findStuckGenerating(@Param("before") OffsetDateTime before);
 }

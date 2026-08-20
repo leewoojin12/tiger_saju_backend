@@ -44,6 +44,13 @@ public class PaymentService {
     @Transactional
     public PreparePaymentResponse prepare(Long memberId, PreparePaymentRequest req) {
         Fortune fortune = fortuneService.getActiveEntity(req.slug());  // 없거나 비활성이면 404
+        // 0원 상품은 PG(포트원)가 결제를 거부한다 → 결제창에서 막히고 쓸모없는 PENDING 행만 남는다.
+        // 애초에 여기서 끊어 사용자에게 명확히 알린다(운영: admin 에서 가격 1원 이상으로 저장하도록 강제).
+        if (fortune.getPrice() <= 0) {
+            log.warn("[결제 준비] 0원 상품 결제 시도 slug={}", req.slug());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "현재 결제할 수 없는 상품입니다. 잠시 후 다시 시도해 주세요.");
+        }
         String paymentId = "saju_" + UUID.randomUUID().toString().replace("-", "");
         String inputJson = null;
         if (req.input() != null) {
@@ -106,6 +113,33 @@ public class PaymentService {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "본인 결제건이 아닙니다.");
         }
         return sync(stored);
+    }
+
+    /**
+     * 결제 취소(환불). 리포트 생성이 끝내 실패했을 때 서버가 스스로 호출한다.
+     *
+     * <p>PAID 가 아니면 아무 것도 하지 않는다(이미 취소됐거나 결제 전). 환불에 성공하면
+     * payments.status 를 CANCELLED 로 내리고, 그 시점부터 해당 리포트는 열람이 차단된다
+     * (FortuneResultService.getMine 이 payments.status 를 함께 본다).
+     *
+     * @return 실제로 환불이 이루어졌으면 true
+     */
+    @Transactional
+    public boolean refund(String paymentId, String reason) {
+        Payment p = paymentMapper.findByPaymentId(paymentId).orElse(null);
+        if (p == null) {
+            log.warn("[자동 환불] 결제건 없음 paymentId={}", paymentId);
+            return false;
+        }
+        if (!"PAID".equals(p.getStatus())) {
+            log.info("[자동 환불] PAID 아님 → 건너뜀 paymentId={} status={}", paymentId, p.getStatus());
+            return false;
+        }
+        portOneApiClient.cancel(paymentId, reason);
+        p.setStatus("CANCELLED");
+        paymentMapper.updateResult(p);
+        log.info("[자동 환불] 완료 paymentId={} amount={} reason={}", paymentId, p.getAmount(), reason);
+        return true;
     }
 
     /** entitlement: 이 회원이 이 컨텐츠(slug)를 결제 완료(PAID)한 적이 있는지. */
