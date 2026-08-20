@@ -65,7 +65,7 @@ public class FortuneResultService {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                         "저장된 결과를 읽을 수 없습니다.");
             }
-            return new ResultDetailResponse(id, "DONE", tree, null, false);
+            return new ResultDetailResponse(id, "DONE", tree, null, false, inputOf(result));
         }
         if ("FAILED".equals(status)) {
             // 시도 한도에 도달했으면 재시도 버튼을 숨긴다(이미 자동 환불된 건).
@@ -74,6 +74,24 @@ public class FortuneResultService {
             return new ResultDetailResponse(id, "FAILED", null, result.getError(), retryable);
         }
         return new ResultDetailResponse(id, "GENERATING", null, null, false);
+    }
+
+    /**
+     * 저장해 둔 생성 입력에서 GenerateRequest 부분만 꺼낸다.
+     * input_json 형태: {"input": GenerateRequest, "intro": "..."}.
+     * 없거나 깨져 있으면 null (프론트는 이 경우 입력 정보 표시를 생략한다).
+     */
+    private JsonNode inputOf(FortuneResult result) {
+        String raw = result.getInputJson();
+        if (raw == null || raw.isBlank()) {
+            return null;
+        }
+        try {
+            JsonNode node = JSON.readTree(raw).get("input");
+            return node != null && !node.isNull() ? node : null;
+        } catch (Exception e) {
+            return null;   // 표시용 부가 정보라 실패해도 리포트 조회는 계속돼야 한다.
+        }
     }
 
     /**

@@ -23,6 +23,9 @@ final class GenerationPrompt {
                 sb.append(s.label()).append(' ');
             }
             sb.append(s.name()).append(": ").append(s.birthDate()).append(' ').append(s.calendar());
+            if (s.gender() != null && !s.gender().isBlank()) {
+                sb.append(' ').append(s.gender());
+            }
             if (s.timeUnknown()) {
                 sb.append(" 시간모름");
             } else if (s.birthTime() != null && !s.birthTime().isBlank()) {

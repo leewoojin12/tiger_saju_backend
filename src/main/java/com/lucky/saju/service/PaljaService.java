@@ -25,7 +25,8 @@ public class PaljaService {
                 req.calendar(),
                 false,                          // 윤달 입력 없음(기존 /api/saju와 동일)
                 req.birthTime(),
-                req.timeUnknown()
+                req.timeUnknown(),
+                req.gender()                    // 계산엔 미사용, 구조상 함께 전달
         );
         SajuCalculator.Palja p = calc.palja(subject);
         return new PaljaResponse(
