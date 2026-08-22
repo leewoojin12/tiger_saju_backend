@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lucky.review.mapper.ReviewMapper">
+
+    <!--
+      공개 API 가 쓰는 조회. status = 'PUBLIC' 조건을 여기서 절대 빼지 말 것.
+      기본값이 PENDING 이라, 이 조건이 곧 '확인하지 않은 글은 노출되지 않는다'는 보장이다.
+    -->
+    <select id="findPublic" resultType="com.lucky.review.dto.ReviewPublic">
+        SELECT id, slug, product, author, rating, body, written_at
+        FROM reviews
+        WHERE status = 'PUBLIC'
+        <if test="slug != null">
+            AND slug = #{slug}
+        </if>
+        ORDER BY written_at DESC, id DESC
+        LIMIT #{limit}
+    </select>
+
+    <select id="countPublic" resultType="int">
+        SELECT count(*)
+        FROM reviews
+        WHERE status = 'PUBLIC'
+        <if test="slug != null">
+            AND slug = #{slug}
+        </if>
+    </select>
+
+</mapper>

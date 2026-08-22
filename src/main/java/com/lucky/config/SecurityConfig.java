@@ -50,6 +50,9 @@ public class SecurityConfig {
                         // 카탈로그는 공개(가격/문구). GET만 허용 — POST(맛보기/풀생성)는 인증 필요하므로 제외.
                         // "/api/fortunes/*" 는 한 세그먼트만 매칭 → /api/fortunes/{slug}/teaser(두 세그먼트)는 인증 유지.
                         .requestMatchers(HttpMethod.GET, "/api/fortunes", "/api/fortunes/*").permitAll()
+                        // 후기 조회는 공개 — 홈 후기 띠가 비로그인 상태에서도 보여야 한다.
+                        // 공개(PUBLIC) 상태인 글만 나가고, 작성(POST)은 여기 없으므로 인증이 필요하다.
+                        .requestMatchers(HttpMethod.GET, "/api/reviews").permitAll()
                         // 팔자판 전용 경량 계산(AI·저장 없음)은 공개 — 비로그인 화면에서도 실제 팔자 표시.
                         .requestMatchers(HttpMethod.POST, "/api/saju/palja").permitAll()
                         // 관리자 전용: members.role = 'ROLE_ADMIN' 인 회원만 (CustomOAuth2UserService가 role을 권한으로 부여)

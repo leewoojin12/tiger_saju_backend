@@ -152,3 +152,31 @@ UPDATE fortune_results r SET slug = 'health'
 UPDATE fortune_results r SET title = f.title
   FROM fortunes f
  WHERE r.title IS NULL AND f.slug = r.slug;
+
+-- reviews : 이용 후기. 홈 상단 후기 띠와 상품 상세에서 읽는다.
+--  - result_id : 어떤 리포트에 대한 후기인지. 결제하고 받은 리포트 1건당 후기 1개(부분 UNIQUE).
+--                이관/운영자 등록 건은 연결할 리포트가 없으므로 NULL 허용.
+--  - author    : 화면에 찍히는 이름. 실명을 그대로 두지 않고 마스킹해서(김**) 넣는다.
+--  - product   : 후기를 쓴 시점의 상품명 스냅샷. slug 이 바뀌어도 후기 표시는 안 흔들린다.
+--  - status    : PENDING(검토 대기) / PUBLIC(공개) / HIDDEN(숨김). 공개 API 는 PUBLIC 만 내보낸다.
+--                기본값을 PENDING 으로 둬서, 확인하지 않은 글이 저절로 노출되는 일이 없게 한다.
+--  - written_at: 화면에 표시하는 작성일. 이관 건은 원본 날짜를 그대로 넣기 위해 created_at 과 분리.
+CREATE TABLE IF NOT EXISTS reviews (
+    id         BIGINT       GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    member_id  BIGINT       REFERENCES members(id),
+    result_id  BIGINT       REFERENCES fortune_results(id),
+    slug       VARCHAR(60),
+    product    VARCHAR(100),
+    author     VARCHAR(50)  NOT NULL,
+    rating     SMALLINT     NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    body       TEXT         NOT NULL,
+    status     VARCHAR(20)  NOT NULL DEFAULT 'PENDING',
+    written_at TIMESTAMPTZ  NOT NULL DEFAULT now(),
+    created_at TIMESTAMPTZ  NOT NULL DEFAULT now()
+);
+-- 리포트 1건당 후기 1개(연결 없는 이관 건은 제외).
+CREATE UNIQUE INDEX IF NOT EXISTS uk_reviews_result
+    ON reviews (result_id) WHERE result_id IS NOT NULL;
+-- 홈 조회 경로: 공개된 것만 최신순.
+CREATE INDEX IF NOT EXISTS idx_reviews_public
+    ON reviews (written_at DESC) WHERE status = 'PUBLIC';
