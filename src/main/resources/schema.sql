@@ -133,3 +133,22 @@ CREATE INDEX IF NOT EXISTS idx_fortune_results_member_alive
 
 -- 운세 정렬 순서: 낮은 숫자가 앞. NULL 이면 등록순(id)으로 뒤에 붙는다.
 ALTER TABLE fortunes ADD COLUMN IF NOT EXISTS sort_order INT;
+
+-- 보관함 제목 = '산 시점의 상품명' 스냅샷.
+-- 원래는 목록 조회에서 slug 으로 fortunes 를 조인해 제목을 가져왔는데, admin 에서 상품 slug 을
+-- 바꾸면 예전 리포트의 조인이 끊겨 제목이 사라졌다(보관함에 "사주 리포트"로만 표시).
+-- 상품명을 바꿔도 이미 팔린 리포트는 그때 이름 그대로여야 하므로 생성 시 값을 박아 둔다.
+ALTER TABLE fortune_results ADD COLUMN IF NOT EXISTS title VARCHAR(100);
+
+-- slug 이 바뀌기 전에 만들어진 옛 리포트들의 slug 정정.
+-- (money → wealth[재물운], health1 → health[건강운]. 바뀐 slug 이 실제로 있을 때만 옮긴다.)
+-- 제목뿐 아니라 보관함 썸네일 조회도 slug 으로 하므로 같이 살아난다.
+UPDATE fortune_results r SET slug = 'wealth'
+ WHERE r.slug = 'money'   AND EXISTS (SELECT 1 FROM fortunes f WHERE f.slug = 'wealth');
+UPDATE fortune_results r SET slug = 'health'
+ WHERE r.slug = 'health1' AND EXISTS (SELECT 1 FROM fortunes f WHERE f.slug = 'health');
+
+-- 기존 행 채우기: 지금 카탈로그에서 찾아지는 것만. 못 찾으면 NULL 로 두고 화면에서 기본 문구로 뺀다.
+UPDATE fortune_results r SET title = f.title
+  FROM fortunes f
+ WHERE r.title IS NULL AND f.slug = r.slug;

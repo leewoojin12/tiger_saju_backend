@@ -10,16 +10,16 @@
           붙이면 지운 리포트를 결제 없이 재생성할 수 있게 되어 구멍이 생긴다.
     -->
     <sql id="cols">
-        id, member_id, slug, payment_id, name, result_json, status, error, input_json,
+        id, member_id, slug, title, payment_id, name, result_json, status, error, input_json,
         attempts, failed_at, started_at, deleted_at, created_at
     </sql>
 
     <insert id="insertGenerating" parameterType="com.lucky.fortune.domain.FortuneResult"
             useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         INSERT INTO fortune_results
-            (member_id, slug, payment_id, name, status, input_json, attempts, started_at)
+            (member_id, slug, title, payment_id, name, status, input_json, attempts, started_at)
         VALUES
-            (#{memberId}, #{slug}, #{paymentId}, #{name}, #{status}, #{inputJson}, 0, now())
+            (#{memberId}, #{slug}, #{title}, #{paymentId}, #{name}, #{status}, #{inputJson}, 0, now())
         ON CONFLICT (payment_id) DO NOTHING
     </insert>
 
@@ -57,7 +57,11 @@
     </select>
 
     <select id="findSummariesByMemberId" resultType="com.lucky.fortune.dto.MyResultSummary">
-        SELECT r.id, r.slug, f.title AS title, r.name, r.status, r.created_at,
+        <!--
+          제목은 '산 시점의 상품명'(r.title)이 먼저다. 그 값이 없는 옛 행만 지금 카탈로그에서 끌어온다.
+          slug 조인 하나에만 기대면 admin 에서 slug 을 바꿨을 때 제목이 통째로 사라진다.
+        -->
+        SELECT r.id, r.slug, COALESCE(r.title, f.title) AS title, r.name, r.status, r.created_at,
                p.status AS payment_status
         FROM fortune_results r
         LEFT JOIN fortunes f ON f.slug = r.slug

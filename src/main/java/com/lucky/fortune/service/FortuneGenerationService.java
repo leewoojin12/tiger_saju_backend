@@ -72,7 +72,7 @@ public class FortuneGenerationService {
     @Transactional
     public EnqueueResponse enqueueFull(String slug, String paymentId, GenerateRequest input,
                                        String intro, Long memberId) {
-        fortuneService.getActiveEntity(slug);                       // 컨텐츠 유효성 검증
+        Fortune fortune = fortuneService.getActiveEntity(slug);     // 컨텐츠 유효성 검증
         paymentService.assertPaidFor(memberId, paymentId, slug);    // 결제 안 했으면 차단
 
         var existing = fortuneResultMapper.findByPaymentId(paymentId);
@@ -86,6 +86,9 @@ public class FortuneGenerationService {
         FortuneResult row = FortuneResult.builder()
                 .memberId(memberId)
                 .slug(slug)
+                // 상품명은 지금 값을 박아 둔다. 나중에 상품명·slug 이 바뀌어도 보관함에는
+                // 손님이 산 그때 이름이 그대로 남아야 한다.
+                .title(fortune.getTitle())
                 .paymentId(paymentId)
                 .name(name)
                 .status("GENERATING")

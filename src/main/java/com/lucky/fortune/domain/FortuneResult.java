@@ -18,6 +18,14 @@ public class FortuneResult {
     private Long id;
     private Long memberId;
     private String slug;
+    /**
+     * 생성 시점의 상품명 스냅샷.
+     *
+     * <p>보관함 목록은 원래 slug 으로 fortunes 를 조인해 제목을 가져왔는데, admin 에서 상품 slug 을
+     * 바꾸면 예전 리포트의 조인이 끊겨 제목이 사라졌다(= "사주 리포트"로 표시). 상품명을 바꿔도
+     * 이미 팔린 리포트는 <b>그때 산 이름</b> 그대로여야 하므로 생성 시 값을 박아 둔다.
+     */
+    private String title;
     private String paymentId;
     private String name;
     private String resultJson;   // 풀 리포트 AI JSON(원문). 생성 중(GENERATING)이면 NULL.
