@@ -44,4 +44,10 @@ public interface FortuneResultMapper {
 
     /** GENERATING 인 채 방치된(=워커가 죽은) 행. before 이전에 시작된 것만. */
     List<FortuneResult> findStuckGenerating(@Param("before") OffsetDateTime before);
+
+    /**
+     * 제공 기간이 끝난 건의 본문·입력값 파기. 행은 남기고 내용만 비운다.
+     * 여러 번 돌려도 안전하다(이미 비워진 건은 대상에서 빠진다). 파기한 행 수를 돌려준다.
+     */
+    int purgeExpired(@Param("now") OffsetDateTime now);
 }

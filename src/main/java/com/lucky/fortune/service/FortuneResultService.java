@@ -4,6 +4,7 @@ import com.lucky.fortune.domain.FortuneResult;
 import com.lucky.fortune.dto.MyResultSummary;
 import com.lucky.fortune.dto.ResultDetailResponse;
 import com.lucky.fortune.mapper.FortuneResultMapper;
+import java.time.OffsetDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,11 +32,29 @@ public class FortuneResultService {
     }
 
     /**
+     * 제공 기간이 끝난 건의 본문·입력값 파기(스케줄러가 호출).
+     * 열람 차단은 읽는 시점 판단이라 이 배치와 무관하게 이미 걸려 있고,
+     * 여기서는 실제 데이터를 지우는 일만 한다.
+     */
+    @Transactional
+    public int purgeExpired() {
+        return resultMapper.purgeExpired(OffsetDateTime.now());
+    }
+
+    /**
      * 환불(취소)된 결제인지. payments.status 기준.
      * PortOne 은 전액 취소를 CANCELLED, 부분 취소를 PARTIAL_CANCELLED 로 준다.
      */
     public static boolean isRevoked(String paymentStatus) {
         return "CANCELLED".equals(paymentStatus) || "PARTIAL_CANCELLED".equals(paymentStatus);
+    }
+
+    /**
+     * 콘텐츠 제공 기간(결제일 + 1년)이 지났는지. 약관 제9조 · 환불정책 제2조.
+     * 읽는 시점에 판단하므로 파기 배치가 아직 안 돌았어도 열람은 즉시 막힌다.
+     */
+    public static boolean isExpired(OffsetDateTime expiresAt) {
+        return expiresAt != null && expiresAt.isBefore(OffsetDateTime.now());
     }
 
     /**
@@ -55,6 +74,12 @@ public class FortuneResultService {
         if (isRevoked(result.getPaymentStatus())) {
             return new ResultDetailResponse(id, "REVOKED", null,
                     "환불이 완료된 리포트예요. 다시 보시려면 새로 신청해 주세요.", false);
+        }
+        // 제공 기간이 끝난 건도 마찬가지로 본문을 내려주지 않는다.
+        // 배치가 이미 본문을 비웠을 수도 있으므로 result_json 을 읽기 전에 먼저 걸러야 한다.
+        if (isExpired(result.getExpiresAt())) {
+            return new ResultDetailResponse(id, "EXPIRED", null,
+                    "제공 기간(결제일로부터 1년)이 지나 열람이 종료된 리포트예요.", false);
         }
         String status = result.getStatus();
         if ("DONE".equals(status)) {

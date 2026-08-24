@@ -11,15 +11,17 @@
     -->
     <sql id="cols">
         id, member_id, slug, title, payment_id, name, result_json, status, error, input_json,
-        attempts, failed_at, started_at, deleted_at, created_at
+        attempts, failed_at, started_at, deleted_at, expires_at, created_at
     </sql>
 
     <insert id="insertGenerating" parameterType="com.lucky.fortune.domain.FortuneResult"
             useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         INSERT INTO fortune_results
-            (member_id, slug, title, payment_id, name, status, input_json, attempts, started_at)
+            (member_id, slug, title, payment_id, name, status, input_json, attempts, started_at,
+             expires_at)
         VALUES
-            (#{memberId}, #{slug}, #{title}, #{paymentId}, #{name}, #{status}, #{inputJson}, 0, now())
+            (#{memberId}, #{slug}, #{title}, #{paymentId}, #{name}, #{status}, #{inputJson}, 0, now(),
+             now() + INTERVAL '1 year')
         ON CONFLICT (payment_id) DO NOTHING
     </insert>
 
@@ -56,13 +58,26 @@
         WHERE payment_id = #{paymentId}
     </select>
 
+    <!--
+      제공 기간이 끝난 건의 본문·입력값 파기(환불정책 제8조 / 개인정보처리방침 3-1).
+      행은 남기고 내용만 비운다 — 지우면 미수령 결제 배너가 되살아나고 결제 멱등이 풀린다.
+      이미 비워진 건은 건드리지 않도록 result_json IS NOT NULL 로 거른다(재실행해도 안전).
+    -->
+    <update id="purgeExpired">
+        UPDATE fortune_results
+        SET result_json = NULL, input_json = NULL, name = NULL
+        WHERE expires_at IS NOT NULL
+          AND expires_at &lt; #{now}
+          AND result_json IS NOT NULL
+    </update>
+
     <select id="findSummariesByMemberId" resultType="com.lucky.fortune.dto.MyResultSummary">
         <!--
           제목은 '산 시점의 상품명'(r.title)이 먼저다. 그 값이 없는 옛 행만 지금 카탈로그에서 끌어온다.
           slug 조인 하나에만 기대면 admin 에서 slug 을 바꿨을 때 제목이 통째로 사라진다.
         -->
         SELECT r.id, r.slug, COALESCE(r.title, f.title) AS title, r.name, r.status, r.created_at,
-               p.status AS payment_status
+               r.expires_at, p.status AS payment_status
         FROM fortune_results r
         LEFT JOIN fortunes f ON f.slug = r.slug
         LEFT JOIN payments p ON p.payment_id = r.payment_id
@@ -74,7 +89,7 @@
     <!-- 상세/재시도용. 결제 상태를 함께 실어 환불된 리포트를 서비스단에서 막을 수 있게 한다. -->
     <select id="findByIdAndMemberId" resultType="com.lucky.fortune.domain.FortuneResult">
         SELECT r.id, r.member_id, r.slug, r.payment_id, r.name, r.result_json, r.status, r.error,
-               r.input_json, r.attempts, r.failed_at, r.deleted_at, r.created_at,
+               r.input_json, r.attempts, r.failed_at, r.deleted_at, r.expires_at, r.created_at,
                p.status AS payment_status
         FROM fortune_results r
         LEFT JOIN payments p ON p.payment_id = r.payment_id

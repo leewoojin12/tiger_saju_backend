@@ -122,6 +122,11 @@ public class FortuneGenerationService {
             throw new ResponseStatusException(HttpStatus.PAYMENT_REQUIRED,
                     "환불이 완료된 결제건이라 다시 만들 수 없어요.");
         }
+        // 제공 기간이 끝난 건은 재생성도 막는다. 만들어 봐야 열람이 안 되고 AI 비용만 나간다.
+        if (FortuneResultService.isExpired(row.getExpiresAt())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "제공 기간(결제일로부터 1년)이 지나 다시 만들 수 없어요.");
+        }
         if (!"FAILED".equals(row.getStatus())) {
             return new EnqueueResponse(id, row.getStatus());   // 이미 완료/진행중 → 그대로
         }

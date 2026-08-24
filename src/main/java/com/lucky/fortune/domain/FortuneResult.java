@@ -36,6 +36,11 @@ public class FortuneResult {
     private OffsetDateTime failedAt;   // 마지막 실패 시각
     private OffsetDateTime startedAt;  // 마지막으로 GENERATING 이 된 시각(좀비 행 판정 기준)
     private OffsetDateTime deletedAt;  // 보관함에서 사용자가 지운 시각(소프트 삭제). NULL 이면 살아있음.
+    /**
+     * 콘텐츠 제공 기간의 끝(결제일 + 1년). 이 시각이 지나면 열람이 종료되고 본문이 파기된다.
+     * 생성 시 박아 두므로, 나중에 제공 기간 정책을 바꿔도 이미 판 건은 영향을 받지 않는다.
+     */
+    private OffsetDateTime expiresAt;
     private OffsetDateTime createdAt;
 
     /**

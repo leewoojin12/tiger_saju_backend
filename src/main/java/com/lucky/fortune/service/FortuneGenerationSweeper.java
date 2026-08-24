@@ -25,6 +25,7 @@ public class FortuneGenerationSweeper {
     private static final int STUCK_MINUTES = 15;
 
     private final FortuneGenerationService generationService;
+    private final FortuneResultService resultService;
 
     /** 5분마다. 애플리케이션 기동 1분 뒤부터. */
     @Scheduled(initialDelay = 60_000, fixedDelay = 300_000)
@@ -37,6 +38,25 @@ public class FortuneGenerationSweeper {
             }
         } catch (Exception e) {
             log.error("[좀비 정리] 실행 실패", e);
+        }
+    }
+
+    /**
+     * 제공 기간(결제일 + 1년)이 끝난 리포트의 본문·입력값 파기.
+     * 환불정책 제8조·개인정보처리방침 3-1 의 "지체 없이 파기"를 이행하는 자리다.
+     *
+     * <p>열람 차단은 조회 시점에 이미 걸리므로 이 배치가 늦어도 손님에게 새어 나가지 않는다.
+     * 6시간마다면 충분하고, 굳이 자주 돌려 DB 를 훑을 이유가 없다.
+     */
+    @Scheduled(initialDelay = 120_000, fixedDelay = 21_600_000)
+    public void purgeExpired() {
+        try {
+            int n = resultService.purgeExpired();
+            if (n > 0) {
+                log.info("[제공기간 만료] {}건의 본문·입력값을 파기했습니다.", n);
+            }
+        } catch (Exception e) {
+            log.error("[제공기간 만료] 파기 실패", e);
         }
     }
 }

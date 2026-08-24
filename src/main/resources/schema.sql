@@ -153,6 +153,17 @@ UPDATE fortune_results r SET title = f.title
   FROM fortunes f
  WHERE r.title IS NULL AND f.slug = r.slug;
 
+-- 콘텐츠 제공 기간(약관 제9조 / 환불정책 제2조): 결제일로부터 1년.
+--  - expires_at 이 지나면 보관함에서 열람이 종료되고, 배치가 본문·입력값을 파기한다.
+--  - 행 자체는 남긴다. 지우면 (1)미수령 결제 배너가 되살아나고 (2)payment_id 멱등이 풀려
+--    결제 없이 재생성이 가능해진다(soft delete 와 같은 이유).
+--  - 기간을 나중에 바꾸더라도 이미 판 건의 만료일이 흔들리지 않도록 계산값이 아닌 컬럼으로 박아 둔다.
+ALTER TABLE fortune_results ADD COLUMN IF NOT EXISTS expires_at TIMESTAMPTZ;
+UPDATE fortune_results SET expires_at = created_at + INTERVAL '1 year' WHERE expires_at IS NULL;
+-- 파기 배치가 훑는 경로: 아직 본문이 남아 있는 만료 건.
+CREATE INDEX IF NOT EXISTS idx_fortune_results_expiring
+    ON fortune_results (expires_at) WHERE result_json IS NOT NULL;
+
 -- reviews : 이용 후기. 홈 상단 후기 띠와 상품 상세에서 읽는다.
 --  - result_id : 어떤 리포트에 대한 후기인지. 결제하고 받은 리포트 1건당 후기 1개(부분 UNIQUE).
 --                이관/운영자 등록 건은 연결할 리포트가 없으므로 NULL 허용.

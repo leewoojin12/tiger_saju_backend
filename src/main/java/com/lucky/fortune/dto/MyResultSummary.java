@@ -21,5 +21,7 @@ public class MyResultSummary {
     private String status;  // GENERATING / DONE / FAILED (목록 뱃지용)
     /** 연결된 결제건 상태(payments.status). CANCELLED/PARTIAL_CANCELLED 면 환불된 리포트. */
     private String paymentStatus;
+    /** 콘텐츠 제공 기간의 끝(결제일 + 1년). 지났으면 보관함에서 열람이 종료된다. */
+    private OffsetDateTime expiresAt;
     private OffsetDateTime createdAt;
 }
