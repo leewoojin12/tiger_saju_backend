@@ -53,6 +53,9 @@ public class SecurityConfig {
                         // 후기 조회는 공개 — 홈 후기 띠가 비로그인 상태에서도 보여야 한다.
                         // 공개(PUBLIC) 상태인 글만 나가고, 작성(POST)은 여기 없으므로 인증이 필요하다.
                         .requestMatchers(HttpMethod.GET, "/api/reviews").permitAll()
+                        // 심사용 테스트 로그인(카카오 대신 이메일·비밀번호). app.test-login.enabled 가
+                        // 꺼져 있으면 컨트롤러가 404 로 응답하므로, 여기서 열어둬도 평소엔 통로가 없다.
+                        .requestMatchers(HttpMethod.POST, "/api/auth/test-login").permitAll()
                         // 팔자판 전용 경량 계산(AI·저장 없음)은 공개 — 비로그인 화면에서도 실제 팔자 표시.
                         .requestMatchers(HttpMethod.POST, "/api/saju/palja").permitAll()
                         // 관리자 전용: members.role = 'ROLE_ADMIN' 인 회원만 (CustomOAuth2UserService가 role을 권한으로 부여)

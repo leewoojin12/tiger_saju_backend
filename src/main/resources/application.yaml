@@ -63,6 +63,15 @@ app:
     url: https://tigersaju.com   # 기본=운영(호랑이풍수). 로컬은 local 프로파일에서 override
   cors:
     allowed-origins: https://tigersaju.com,https://www.tigersaju.com,https://tiger-saju.vercel.app,http://localhost:3000  # CORS 허용 출처. 콤마 사이 공백 X, 끝에 슬래시 X
+  # 심사용 테스트 로그인 — 결제사/스토어 심사에서 "테스트 아이디·비밀번호"를 요구할 때만 켠다.
+  # 심사가 끝나면 TEST_LOGIN_ENABLED 를 false 로 내리는 것만으로 통로가 닫힌다(엔드포인트가 404).
+  # 비밀번호는 반드시 환경변수로만 넣는다 — 이 파일은 깃에 올라간다.
+  test-login:
+    enabled: ${TEST_LOGIN_ENABLED:false}
+    email: ${TEST_LOGIN_EMAIL:}
+    password: ${TEST_LOGIN_PASSWORD:}
+    kakao-id: ${TEST_LOGIN_KAKAO_ID:-1}   # members.kakao_id. 실제 카카오 id 와 겹치지 않게 음수
+    nickname: ${TEST_LOGIN_NICKNAME:테스트 계정}
 
 openai:
   api-key: ${OPEN_AI_KEY}
