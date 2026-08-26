@@ -6,6 +6,10 @@ import com.lucky.fortune.dto.ResultDetailResponse;
 import com.lucky.fortune.service.FortuneGenerationService;
 import com.lucky.fortune.service.FortuneResultService;
 import com.lucky.member.service.MemberService;
+import com.lucky.review.dto.RatingRequest;
+import com.lucky.review.dto.RatingResponse;
+import com.lucky.review.service.ReportRatingService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,13 +35,16 @@ public class FortuneResultController {
     private final FortuneResultService resultService;
     private final FortuneGenerationService generationService;
     private final MemberService memberService;
+    private final ReportRatingService ratingService;
 
     public FortuneResultController(FortuneResultService resultService,
                                    FortuneGenerationService generationService,
-                                   MemberService memberService) {
+                                   MemberService memberService,
+                                   ReportRatingService ratingService) {
         this.resultService = resultService;
         this.generationService = generationService;
         this.memberService = memberService;
+        this.ratingService = ratingService;
     }
 
     /** 내가 결제·생성한 풀 리포트 목록(최신순). */
@@ -71,6 +79,17 @@ public class FortuneResultController {
     public void delete(@PathVariable Long id,
                        @AuthenticationPrincipal OAuth2User principal) {
         resultService.deleteMine(id, currentMemberId(principal));
+    }
+
+    /**
+     * 리포트 별점 남기기(★1~5). 본인 것만, 리포트 1건당 한 번.
+     * 이미 남긴 뒤 다시 호출해도 에러가 아니라 처음 남긴 점수를 그대로 돌려준다.
+     */
+    @PostMapping("/{id}/rating")
+    public RatingResponse rate(@PathVariable Long id,
+                               @Valid @RequestBody RatingRequest request,
+                               @AuthenticationPrincipal OAuth2User principal) {
+        return new RatingResponse(ratingService.rate(id, currentMemberId(principal), request.rating()));
     }
 
     private Long currentMemberId(OAuth2User principal) {

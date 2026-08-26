@@ -191,3 +191,20 @@ CREATE UNIQUE INDEX IF NOT EXISTS uk_reviews_result
 -- 홈 조회 경로: 공개된 것만 최신순.
 CREATE INDEX IF NOT EXISTS idx_reviews_public
     ON reviews (written_at DESC) WHERE status = 'PUBLIC';
+
+-- report_ratings : 리포트 하단의 별점(★1~5). 후기(reviews)와는 다른 행위라 테이블을 나눈다.
+--  - reviews 는 본문(body NOT NULL)과 검토 상태(PENDING/PUBLIC/HIDDEN)를 가진 '글'이고,
+--    여기는 글 없이 점수만 남기는 한 번의 클릭이다. 검토 대상도 아니다.
+--  - result_id UNIQUE : 리포트 1건당 한 번만. 다시 누르거나 새로고침해도 덮어쓰지 않는다.
+--  - slug 스냅샷 : 상품별 평균을 뽑을 때 fortune_results 조인 없이 집계할 수 있게.
+CREATE TABLE IF NOT EXISTS report_ratings (
+    id         BIGINT       GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    result_id  BIGINT       NOT NULL REFERENCES fortune_results(id),
+    member_id  BIGINT       NOT NULL REFERENCES members(id),
+    slug       VARCHAR(60),
+    rating     SMALLINT     NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    created_at TIMESTAMPTZ  NOT NULL DEFAULT now(),
+    CONSTRAINT uk_report_ratings_result UNIQUE (result_id)
+);
+-- 상품별 평균·분포 집계 경로.
+CREATE INDEX IF NOT EXISTS idx_report_ratings_slug ON report_ratings (slug);

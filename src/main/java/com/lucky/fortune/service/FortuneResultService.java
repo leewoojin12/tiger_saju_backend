@@ -4,6 +4,7 @@ import com.lucky.fortune.domain.FortuneResult;
 import com.lucky.fortune.dto.MyResultSummary;
 import com.lucky.fortune.dto.ResultDetailResponse;
 import com.lucky.fortune.mapper.FortuneResultMapper;
+import com.lucky.review.mapper.ReportRatingMapper;
 import java.time.OffsetDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,8 @@ public class FortuneResultService {
     private static final JsonMapper JSON = JsonMapper.builder().build();
 
     private final FortuneResultMapper resultMapper;
+    /** 리포트 하단 별점. 이미 남겼는지 알려줘야 화면이 잠긴다(리포트당 1회). */
+    private final ReportRatingMapper ratingMapper;
 
     /** 내 보관함 목록 (최신순, 본문 제외). */
     public List<MyResultSummary> listMine(Long memberId) {
@@ -90,7 +93,8 @@ public class FortuneResultService {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                         "저장된 결과를 읽을 수 없습니다.");
             }
-            return new ResultDetailResponse(id, "DONE", tree, null, false, inputOf(result));
+            return new ResultDetailResponse(id, "DONE", tree, null, false, inputOf(result),
+                    ratingMapper.findByResultId(id));
         }
         if ("FAILED".equals(status)) {
             // 시도 한도에 도달했으면 재시도 버튼을 숨긴다(이미 자동 환불된 건).

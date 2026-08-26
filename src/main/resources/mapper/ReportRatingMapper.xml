@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lucky.review.mapper.ReportRatingMapper">
+
+    <!--
+      리포트 1건당 한 번. ON CONFLICT DO NOTHING 이 곧 '1회 제한'이다.
+      애플리케이션에서 먼저 조회해 분기하지 않는 이유: 두 요청이 동시에 들어오면
+      조회-후-삽입 사이에 끼어들 수 있고, 그때 막아주는 건 결국 UNIQUE 제약이다.
+    -->
+    <insert id="insertIfAbsent">
+        INSERT INTO report_ratings (result_id, member_id, slug, rating)
+        VALUES (#{resultId}, #{memberId}, #{slug}, #{rating})
+        ON CONFLICT (result_id) DO NOTHING
+    </insert>
+
+    <select id="findByResultId" resultType="java.lang.Integer">
+        SELECT rating
+        FROM report_ratings
+        WHERE result_id = #{resultId}
+    </select>
+
+</mapper>

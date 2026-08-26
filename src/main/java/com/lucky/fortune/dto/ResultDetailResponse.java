@@ -15,13 +15,21 @@ import tools.jackson.databind.JsonNode;
  * @param input     생성에 쓰인 입력(GenerateRequest). 리포트 화면이 '입력한 정보'를 표시할 때 쓴다.
  *                  이게 없으면 프론트가 브라우저 localStorage 에 의존하게 되어,
  *                  다른 기기·다른 날 열면 엉뚱한(또는 샘플) 입력값이 표시된다.
+ * @param rating    이 리포트에 이미 남긴 별점(1~5). 아직 남기지 않았으면 null.
+ *                  프론트는 값이 있으면 별점 UI 를 그 점수로 잠근다(리포트당 1회).
  */
 public record ResultDetailResponse(Long id, String status, JsonNode result, String error,
-                                   boolean retryable, JsonNode input) {
+                                   boolean retryable, JsonNode input, Integer rating) {
 
     /** input 없이 만들 때(환불·생성중 등). */
     public ResultDetailResponse(Long id, String status, JsonNode result, String error,
                                 boolean retryable) {
-        this(id, status, result, error, retryable, null);
+        this(id, status, result, error, retryable, null, null);
+    }
+
+    /** 별점 없이 만들 때. */
+    public ResultDetailResponse(Long id, String status, JsonNode result, String error,
+                                boolean retryable, JsonNode input) {
+        this(id, status, result, error, retryable, input, null);
     }
 }
