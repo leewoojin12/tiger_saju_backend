@@ -253,18 +253,13 @@ public class SajuCalculator {
         return 0;
     }
 
-    /** 목→화→토→금→수→목 */
+    // 생·극 판정은 SajuTables 로 옮겼다(십신 계산과 같은 규칙을 써야 하므로).
     private static boolean generates(Ohaeng a, Ohaeng b) {
-        return (a == Ohaeng.MOK && b == Ohaeng.HWA) || (a == Ohaeng.HWA && b == Ohaeng.TO)
-                || (a == Ohaeng.TO && b == Ohaeng.GEUM) || (a == Ohaeng.GEUM && b == Ohaeng.SU)
-                || (a == Ohaeng.SU && b == Ohaeng.MOK);
+        return SajuTables.generates(a, b);
     }
 
-    /** 목극토, 토극수, 수극화, 화극금, 금극목 */
     private static boolean controls(Ohaeng a, Ohaeng b) {
-        return (a == Ohaeng.MOK && b == Ohaeng.TO) || (a == Ohaeng.TO && b == Ohaeng.SU)
-                || (a == Ohaeng.SU && b == Ohaeng.HWA) || (a == Ohaeng.HWA && b == Ohaeng.GEUM)
-                || (a == Ohaeng.GEUM && b == Ohaeng.MOK);
+        return SajuTables.controls(a, b);
     }
 
     private static boolean sameSamhap(char a, char b) {

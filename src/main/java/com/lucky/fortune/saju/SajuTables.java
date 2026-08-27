@@ -70,6 +70,61 @@ final class SajuTables {
             Map.entry('유', '酉'), Map.entry('술', '戌'), Map.entry('해', '亥')
     );
 
+    // ── 음양 · 생극 (십신 판정용) ──
+
+    /** 한자 한 글자 → 한글. 빈 값(시간 모름 등)이면 0 을 돌려준다. */
+    static char koreanOf(String hanja) {
+        if (hanja == null || hanja.isEmpty()) {
+            return 0;
+        }
+        char h = hanja.charAt(0);
+        for (var e : CHEONGAN_HANJA.entrySet()) {
+            if (e.getValue() == h) {
+                return e.getKey();
+            }
+        }
+        for (var e : JIJI_HANJA.entrySet()) {
+            if (e.getValue() == h) {
+                return e.getKey();
+            }
+        }
+        return 0;
+    }
+
+    /** 천간의 음양. 순서상 짝수 자리(갑·병·무·경·임)가 양. */
+    static boolean isYangCheongan(char gan) {
+        for (int i = 0; i < CHEONGAN_ORDER.length; i++) {
+            if (CHEONGAN_ORDER[i] == gan) {
+                return i % 2 == 0;
+            }
+        }
+        return true;
+    }
+
+    /** 지지의 음양. 순서상 짝수 자리(자·인·진·오·신·술)가 양. */
+    static boolean isYangJiji(char ji) {
+        for (int i = 0; i < JIJI_ORDER.length; i++) {
+            if (JIJI_ORDER[i] == ji) {
+                return i % 2 == 0;
+            }
+        }
+        return true;
+    }
+
+    /** 목→화→토→금→수→목 (a 가 b 를 생한다) */
+    static boolean generates(Ohaeng a, Ohaeng b) {
+        return (a == Ohaeng.MOK && b == Ohaeng.HWA) || (a == Ohaeng.HWA && b == Ohaeng.TO)
+                || (a == Ohaeng.TO && b == Ohaeng.GEUM) || (a == Ohaeng.GEUM && b == Ohaeng.SU)
+                || (a == Ohaeng.SU && b == Ohaeng.MOK);
+    }
+
+    /** 목극토, 토극수, 수극화, 화극금, 금극목 (a 가 b 를 극한다) */
+    static boolean controls(Ohaeng a, Ohaeng b) {
+        return (a == Ohaeng.MOK && b == Ohaeng.TO) || (a == Ohaeng.TO && b == Ohaeng.SU)
+                || (a == Ohaeng.SU && b == Ohaeng.HWA) || (a == Ohaeng.HWA && b == Ohaeng.GEUM)
+                || (a == Ohaeng.GEUM && b == Ohaeng.MOK);
+    }
+
     /**
      * 오자시법: 일간 → 자시(子)의 천간 인덱스(CHEONGAN_ORDER 기준).
      * 갑기→갑(0), 을경→병(2), 병신→무(4), 정임→경(6), 무계→임(8).
