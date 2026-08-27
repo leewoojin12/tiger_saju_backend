@@ -9,6 +9,8 @@ import com.lucky.member.service.MemberService;
 import com.lucky.review.dto.RatingRequest;
 import com.lucky.review.dto.RatingResponse;
 import com.lucky.review.service.ReportRatingService;
+import com.lucky.share.dto.ShareLinkResponse;
+import com.lucky.share.service.ReportShareService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -36,15 +38,18 @@ public class FortuneResultController {
     private final FortuneGenerationService generationService;
     private final MemberService memberService;
     private final ReportRatingService ratingService;
+    private final ReportShareService shareService;
 
     public FortuneResultController(FortuneResultService resultService,
                                    FortuneGenerationService generationService,
                                    MemberService memberService,
-                                   ReportRatingService ratingService) {
+                                   ReportRatingService ratingService,
+                                   ReportShareService shareService) {
         this.resultService = resultService;
         this.generationService = generationService;
         this.memberService = memberService;
         this.ratingService = ratingService;
+        this.shareService = shareService;
     }
 
     /** 내가 결제·생성한 풀 리포트 목록(최신순). */
@@ -90,6 +95,16 @@ public class FortuneResultController {
                                @Valid @RequestBody RatingRequest request,
                                @AuthenticationPrincipal OAuth2User principal) {
         return new RatingResponse(ratingService.rate(id, currentMemberId(principal), request.rating()));
+    }
+
+    /**
+     * 공유 링크 발급(로그인 필요, 본인 것만).
+     * 누를 때마다 새 토큰이 나오고 각 토큰은 발급 시점부터 하루 동안 살아있다.
+     */
+    @PostMapping("/{id}/share")
+    public ShareLinkResponse share(@PathVariable Long id,
+                                   @AuthenticationPrincipal OAuth2User principal) {
+        return shareService.create(id, currentMemberId(principal));
     }
 
     private Long currentMemberId(OAuth2User principal) {

@@ -208,3 +208,22 @@ CREATE TABLE IF NOT EXISTS report_ratings (
 );
 -- 상품별 평균·분포 집계 경로.
 CREATE INDEX IF NOT EXISTS idx_report_ratings_slug ON report_ratings (slug);
+
+-- report_shares : 리포트 공유 링크. 링크를 받은 사람은 로그인 없이 읽기만 할 수 있다.
+--  - token_hash : 토큰 원본이 아니라 SHA-256 해시를 저장한다. DB 를 들여다봐도
+--                 살아있는 공유 링크를 만들어낼 수 없게 하기 위함(토큰은 발급 순간에만 존재).
+--  - expires_at : 발급 시점 + 1일. 지나면 링크는 '없는 주소'와 똑같이 취급된다.
+--  - revoked_at : 링크가 새어 나갔을 때 끄는 비상구. 지금은 화면이 없고 DB 로만 조작한다.
+--                 (UPDATE report_shares SET revoked_at = now() WHERE result_id = ...)
+CREATE TABLE IF NOT EXISTS report_shares (
+    id         BIGINT       GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    token_hash CHAR(64)     NOT NULL,
+    result_id  BIGINT       NOT NULL REFERENCES fortune_results(id),
+    member_id  BIGINT       NOT NULL REFERENCES members(id),
+    expires_at TIMESTAMPTZ  NOT NULL,
+    revoked_at TIMESTAMPTZ,
+    created_at TIMESTAMPTZ  NOT NULL DEFAULT now(),
+    CONSTRAINT uk_report_shares_token UNIQUE (token_hash)
+);
+-- 한 리포트의 링크를 한꺼번에 끊을 때 쓰는 경로.
+CREATE INDEX IF NOT EXISTS idx_report_shares_result ON report_shares (result_id);

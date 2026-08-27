@@ -53,6 +53,10 @@ public class SecurityConfig {
                         // 후기 조회는 공개 — 홈 후기 띠가 비로그인 상태에서도 보여야 한다.
                         // 공개(PUBLIC) 상태인 글만 나가고, 작성(POST)은 여기 없으므로 인증이 필요하다.
                         .requestMatchers(HttpMethod.GET, "/api/reviews").permitAll()
+                        // 공유 링크 열람은 공개 — 링크를 받은 사람은 로그인 계정이 없다.
+                        // 토큰 하나가 열쇠이고, 만료·해제·환불 판단은 서비스가 전부 처리한다.
+                        // "/api/shared/*" 는 한 세그먼트만 매칭 → 토큰 뒤에 뭘 더 붙여도 열리지 않는다.
+                        .requestMatchers(HttpMethod.GET, "/api/shared/*").permitAll()
                         // 심사용 테스트 로그인(카카오 대신 이메일·비밀번호). app.test-login.enabled 가
                         // 꺼져 있으면 컨트롤러가 404 로 응답하므로, 여기서 열어둬도 평소엔 통로가 없다.
                         .requestMatchers(HttpMethod.POST, "/api/auth/test-login").permitAll()

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lucky.share.mapper.ReportShareMapper">
+
+    <insert id="insert">
+        INSERT INTO report_shares (token_hash, result_id, member_id, expires_at)
+        VALUES (#{tokenHash}, #{resultId}, #{memberId}, #{expiresAt})
+    </insert>
+
+    <!--
+      링크 자체의 수명(s.expires_at, s.revoked_at)과 리포트의 상태(삭제·환불·제공기간)를
+      함께 끌어온다. 둘 중 어느 하나만 봐도 새는 구멍이 생기기 때문에 한 줄로 가져와
+      서비스에서 한꺼번에 판단한다.
+    -->
+    <select id="findByTokenHash" resultType="com.lucky.share.dto.SharedRow">
+        SELECT s.expires_at   AS share_expires_at,
+               s.revoked_at   AS revoked_at,
+               r.slug         AS slug,
+               r.result_json  AS result_json,
+               r.input_json   AS input_json,
+               r.status       AS status,
+               r.deleted_at   AS deleted_at,
+               r.expires_at   AS result_expires_at,
+               p.status       AS payment_status
+        FROM report_shares s
+        JOIN fortune_results r ON r.id = s.result_id
+        LEFT JOIN payments p ON p.payment_id = r.payment_id
+        WHERE s.token_hash = #{tokenHash}
+    </select>
+
+</mapper>
