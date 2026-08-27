@@ -2,6 +2,7 @@ package com.lucky.fortune.saju;
 
 import com.github.usingsky.calendar.KoreanLunarCalendar;
 import com.lucky.fortune.dto.Subject;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -37,8 +38,18 @@ public class SajuCalculator {
     }
 
     /**
-     * 팔자 4기둥 계산(AI·저장 없음). 연·월·일주는 KoreanLunarCalendar(절기 반영),
-     * 시주는 오자시법(일간 기준)+태어난 시지로 계산. 시간 모르면 시주는 빈 값.
+     * 팔자 4기둥 계산(AI·저장 없음).
+     *
+     * <p>일주만 KoreanLunarCalendar 에서 가져온다. 일주는 60갑자가 끊김 없이 도는 값이라
+     * 음력 라이브러리로도 맞는다.
+     *
+     * <p><b>연주와 월주는 직접 계산한다.</b> 사주의 해는 입춘에, 달은 12절(節)에 바뀌는데
+     * 그 라이브러리는 음력 설과 음력 초하루에서 간지를 넘긴다. 실제로 확인해 보면
+     * 2024-02-05(입춘 지남)이 아직 계묘년으로, 2024-03-06(경칩 지남)이 아직 인월로 나온다.
+     * 즉 입춘~설 사이에 태어난 사람은 연주가, 절기와 음력 초하루 사이에 태어난 사람은
+     * 월주가 어긋난다. 후자는 드문 경우가 아니라 절반 가까이 해당한다.
+     *
+     * <p>시주는 오자시법(일간 기준) + 태어난 시지. 시간을 모르면 빈 값.
      */
     public Palja palja(Subject s) {
         int[] ymd = parseYmd(s.birthDate());
@@ -50,22 +61,64 @@ public class SajuCalculator {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "변환할 수 없는 날짜입니다(지원 1000~2050): " + s.birthDate());
         }
-        // "정유년 병오월 임오일 (윤월)" → [정유, 병오, 임오]
-        String gapja = cal.getGapjaString().trim();
-        String yearKo = pillarToken(gapja, "년");
-        String monthKo = pillarToken(gapja, "월");
-        String dayKo = pillarToken(gapja, "일");
+        // 일주만 라이브러리에서. "정유년 병오월 임오일 (윤월)" → 임오
+        String dayKo = pillarToken(cal.getGapjaString().trim(), "일");
         char ilgan = dayKo.charAt(0);
 
+        // 절기 판정은 양력 시각으로 한다(음력 입력이면 변환된 양력).
+        int[] solar = parseYmd(cal.getSolarIsoFormat());
+        LocalDateTime born = LocalDateTime.of(solar[0], solar[1], solar[2], 0, 0)
+                .plusMinutes(minuteOfDay(s));
+
+        int solarYear = SolarTerms.solarYear(born);
+        int monthIndex = SolarTerms.monthBranchIndex(born);   // 0 = 인월
+
         PaljaPillar hour = hourPillar(ilgan, s);
-        String iljuName = dayKo + "일주";   // 예: "임오일주"
         return new Palja(
-                toHanjaPillar(yearKo),
-                toHanjaPillar(monthKo),
+                yearPillar(solarYear),
+                monthPillar(solarYear, monthIndex),
                 toHanjaPillar(dayKo),
                 hour,
-                iljuName
+                dayKo + "일주"
         );
+    }
+
+    /**
+     * 절기 판정에 쓸 '하루 중 몇 분'. 시지는 2시간 폭이라 그 한가운데를 쓴다.
+     * 시간을 모르면 정오 — 절입 경계에서 가장 멀어 잘못 갈릴 확률이 가장 낮은 지점이다.
+     */
+    private static int minuteOfDay(Subject s) {
+        if (s.timeUnknown() || s.birthTime() == null || s.birthTime().isBlank()) {
+            return 12 * 60;
+        }
+        int idx = indexOf(SajuTables.JIJI_ORDER, s.birthTime().trim().charAt(0));
+        if (idx < 0) {
+            return 12 * 60;
+        }
+        // 자시 23:30~01:29 의 한가운데는 00:30. 이후 두 시간 간격.
+        return (30 + idx * 120) % (24 * 60);
+    }
+
+    /** 연주 = 입춘 기준 연도의 간지. 서기 4년이 갑자년. */
+    private static PaljaPillar yearPillar(int solarYear) {
+        int n = Math.floorMod(solarYear - 4, 60);
+        return new PaljaPillar(
+                SajuTables.CHEONGAN_HANJA.get(SajuTables.CHEONGAN_ORDER[n % 10]).toString(),
+                SajuTables.JIJI_HANJA.get(SajuTables.JIJI_ORDER[n % 12]).toString());
+    }
+
+    /**
+     * 월주. 월지는 절기로 정해지고(인월부터), 월간은 월두법(오호둔)으로 연간에서 나온다 —
+     * 갑·기년의 인월은 병인, 을·경년은 무인, 병·신년은 경인, 정·임년은 임인, 무·계년은 갑인.
+     */
+    private static PaljaPillar monthPillar(int solarYear, int monthIndex) {
+        int yearGan = Math.floorMod(solarYear - 4, 10);
+        int ganOfIpchunMonth = (yearGan % 5) * 2 + 2;             // 갑→병(2), 을→무(4) …
+        int gan = Math.floorMod(ganOfIpchunMonth + monthIndex, 10);
+        int ji = Math.floorMod(2 + monthIndex, 12);               // 인(寅)이 지지 index 2
+        return new PaljaPillar(
+                SajuTables.CHEONGAN_HANJA.get(SajuTables.CHEONGAN_ORDER[gan]).toString(),
+                SajuTables.JIJI_HANJA.get(SajuTables.JIJI_ORDER[ji]).toString());
     }
 
     /** 시주 = 오자시법(일간→자시 천간) + 태어난 시지. 시간 모르면 빈 값. */
