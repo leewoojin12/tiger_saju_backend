@@ -20,4 +20,10 @@
         WHERE result_id = #{resultId}
     </select>
 
+
+    <delete id="deleteByMemberId">
+        DELETE FROM report_ratings
+        WHERE member_id = #{memberId}
+    </delete>
+
 </mapper>

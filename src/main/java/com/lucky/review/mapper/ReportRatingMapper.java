@@ -17,4 +17,7 @@ public interface ReportRatingMapper {
 
     /** 이 리포트에 남긴 별점. 없으면 null. */
     Integer findByResultId(@Param("resultId") Long resultId);
+
+    /** 탈퇴: 이 회원이 남긴 별점 삭제. member_id 가 NOT NULL 이라 연결만 끊을 수 없다. */
+    int deleteByMemberId(@Param("memberId") Long memberId);
 }

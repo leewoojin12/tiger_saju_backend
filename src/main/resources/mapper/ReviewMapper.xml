@@ -27,4 +27,12 @@
         </if>
     </select>
 
+
+    <!-- 탈퇴: 회원과의 연결만 끊는다. 글과 마스킹된 작성자 표기는 남는다. -->
+    <update id="detachMember">
+        UPDATE reviews
+        SET member_id = NULL
+        WHERE member_id = #{memberId}
+    </update>
+
 </mapper>

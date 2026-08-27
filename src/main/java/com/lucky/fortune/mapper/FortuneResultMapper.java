@@ -50,4 +50,11 @@ public interface FortuneResultMapper {
      * 여러 번 돌려도 안전하다(이미 비워진 건은 대상에서 빠진다). 파기한 행 수를 돌려준다.
      */
     int purgeExpired(@Param("now") OffsetDateTime now);
+
+    /**
+     * 탈퇴: 이 회원 리포트의 본문·입력값·이름을 파기하고 보관함에서 내린다.
+     * 행과 payment_id 는 남긴다 — 지우면 결제만 있고 리포트가 없는 건으로 잡혀
+     * 미수령 결제 배너가 되살아나고, 멱등 판정이 풀려 결제 없이 재생성이 가능해진다.
+     */
+    int purgeByMemberId(@Param("memberId") Long memberId, @Param("now") OffsetDateTime now);
 }

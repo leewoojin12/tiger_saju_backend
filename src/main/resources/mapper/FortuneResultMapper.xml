@@ -124,4 +124,18 @@
         LIMIT 50
     </select>
 
+
+    <!--
+      탈퇴 시 파기. purgeExpired 와 같은 방식으로 내용만 비우고, 보관함에서도 내린다.
+      payment_id 를 남기는 것이 중요하다(주석은 자바 인터페이스 쪽에).
+    -->
+    <update id="purgeByMemberId">
+        UPDATE fortune_results
+        SET result_json = NULL,
+            input_json  = NULL,
+            name        = NULL,
+            deleted_at  = COALESCE(deleted_at, #{now})
+        WHERE member_id = #{memberId}
+    </update>
+
 </mapper>

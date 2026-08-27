@@ -30,4 +30,21 @@
         WHERE kakao_id = #{kakaoId}
     </update>
 
+
+    <!--
+      탈퇴. kakao_id 를 '절대 겹치지 않는 값'으로 덮어 원래 카카오 회원번호를 지운다.
+      비우지 못하는 이유는 NOT NULL·UNIQUE 이기 때문이고, 큰 음수 오프셋을 쓰는 이유는
+      실제 카카오 회원번호(양수)와도, 심사용 테스트 계정(-1)과도 부딪히지 않게 하기 위함이다.
+      결과적으로 같은 카카오 계정으로 다시 로그인하면 새 회원으로 가입된다.
+    -->
+    <update id="withdraw">
+        UPDATE members
+        SET kakao_id    = -1000000000000 - id,
+            nickname    = NULL,
+            withdrawn_at = now(),
+            updated_at  = now()
+        WHERE id = #{memberId}
+          AND withdrawn_at IS NULL
+    </update>
+
 </mapper>

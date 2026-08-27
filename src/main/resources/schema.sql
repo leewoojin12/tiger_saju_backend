@@ -227,3 +227,8 @@ CREATE TABLE IF NOT EXISTS report_shares (
 );
 -- 한 리포트의 링크를 한꺼번에 끊을 때 쓰는 경로.
 CREATE INDEX IF NOT EXISTS idx_report_shares_result ON report_shares (result_id);
+
+-- 회원 탈퇴 표시. 행 자체는 남긴다 — payments 가 member_id 로 걸려 있고,
+-- 결제·분쟁 기록은 전자상거래법상 5년을 보관해야 하기 때문(개인정보처리방침 3장).
+-- 탈퇴 시 kakao_id 는 식별 불가능한 값으로 덮고 nickname 은 비운다(같은 장, '탈퇴 시 지체 없이 파기').
+ALTER TABLE members ADD COLUMN IF NOT EXISTS withdrawn_at TIMESTAMPTZ;

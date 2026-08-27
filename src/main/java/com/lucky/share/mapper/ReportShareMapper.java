@@ -20,4 +20,7 @@ public interface ReportShareMapper {
      * (조건을 SQL 에 흩어 놓지 않고 서비스에서 한자리에 모아 판단한다)
      */
     Optional<SharedRow> findByTokenHash(@Param("tokenHash") String tokenHash);
+
+    /** 탈퇴: 이 회원이 만든 공유 링크 전부 삭제. 남아 있으면 탈퇴 후에도 리포트가 열린다. */
+    int deleteByMemberId(@Param("memberId") Long memberId);
 }
